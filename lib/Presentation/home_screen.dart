@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:find_my_apartment/presentation/home_screen.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -13,6 +12,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: const Text('Find My Apartment'),
       ),
       body: const Center(

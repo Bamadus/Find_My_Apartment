@@ -1,4 +1,4 @@
-import 'package:find_my_apartment/Presentation/home_screen.dart';
+import 'package:find_my_apartment/Presentation/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: const Home_Screen(),
+      home: const Login_Screen(),
     );
   }
 }
