@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+<!-- i want to add a linear progress indicator for the landing page....
+i want to make sure the lading page runs first before the loging_screen 
+remove the navigation arrow at the top left of the login_screen-->
