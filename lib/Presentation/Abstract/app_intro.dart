@@ -20,7 +20,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-  startTime() {
+  Timer startTime() {
     var duration = const Duration(seconds: 1);
     return Timer(duration, () {
       if (mounted) {
@@ -83,19 +83,30 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
             alignment: Alignment.bottomCenter,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Text(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(40),
+                  child: LinearProgressIndicator(
+                    value: animation.value,
+                    minHeight: 7,
+                    borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xff33415c),
+                  backgroundColor: const Color(0xffF5F6F7),
+                ),
+                ),
+                const SizedBox(height: 15),
+                const Text(
                   "Find My Apartment",
                   style: TextStyle( fontFamily: 'SourceSansPro',
                       color: Color(0xff33415c),fontSize: 25, fontWeight: FontWeight.w700),
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 5),
+                const Text(
                   "Affordable Comfort Zone...",
                   style: TextStyle( fontFamily: 'SourceSansPro',
                       color: Color(0xff33415c),fontSize: 21),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
               ],
             ),
           )
