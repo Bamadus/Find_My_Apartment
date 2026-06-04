@@ -8,38 +8,34 @@ class Login_Screen extends StatefulWidget {
   State<Login_Screen> createState() => _Login_ScreenState();
 }
 class _Login_ScreenState extends State<Login_Screen> {
+
+  double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe3f2fd),
-      body:  Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/Images/Home.png'),
-                      fit: BoxFit.cover
-                  )
-              ),
-            ),
-            Positioned(
-              bottom: 125,
-              height: 65,
-              left: 55,
-              right: 55,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff2196f3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+      body:  Column(
+                  children: [
+                    // SizedBox(height: screenHeight(context)*0.25),
+                    SizedBox(
+                      height: screenHeight(context)*0.7,
+                      width: screenWidth(context)*0.95,
+                      child: Container(
+                              color:Colors.red,
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.only(top: 20),
+                              padding: EdgeInsets.only(right: screenWidth(context)*0.89),
+                            child: Lottie.asset('assets/lotties/Home.json',
+                              fit: BoxFit.fitHeight,
+                              height: screenHeight(context)*0.7,
+                              width: screenWidth(context)*0.5,
+                            ),
+                          )
                   ),
-                ),
-                onPressed: (){}, 
-                child: Text('Login'),
-              ),
-            )
-          ],
-        ),
+                  ],
+                )
     );
   }
 }
