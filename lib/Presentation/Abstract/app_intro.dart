@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:find_my_apartment/Presentation/login_screen.dart';
+import 'package:find_my_apartment/Presentation/onboarding/continue_onboarding.dart';
+import 'package:find_my_apartment/Presentation/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -26,7 +27,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       if (mounted) {
         Timer(const Duration(seconds: 5), () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Login_Screen()));
+              MaterialPageRoute(builder: (context) => Onboarding()));
         });
       }
     });

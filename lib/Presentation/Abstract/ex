@@ -1,0 +1,27 @@
+// State
+int _currentPage = 0;
+final PageController _pageController = PageController();
+
+// Dots widget
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: List.generate(3, (index) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      margin: EdgeInsets.symmetric(horizontal: 4),
+      width: _currentPage == index ? 20 : 8,
+      height: 8,
+      decoration: BoxDecoration(
+        color: _currentPage == index ? Colors.indigo : Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(4),
+      ),
+    );
+  }),
+),
+
+// PageView
+PageView(
+  controller: _pageController,
+  onPageChanged: (index) => setState(() => _currentPage = index),
+  children: [Page1(), Page2(), Page3()],
+),
