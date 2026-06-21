@@ -1,9 +1,9 @@
-import "package:find_my_apartment/Presentation/home_page/home_screen.dart";
+import "package:find_my_apartment/Presentation/routes/home_screen.dart";
 import "package:find_my_apartment/Presentation/onboarding/continue_onboarding.dart";
 import "package:find_my_apartment/Presentation/onboarding/login_onboardig.dart";
 import "package:find_my_apartment/Presentation/onboarding/next_onboarding.dart";
+import "package:find_my_apartment/Presentation/routes/login.dart";
 import "package:flutter/material.dart";
-import "package:lottie/lottie.dart";
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -53,7 +53,7 @@ class _OnboardingState extends State<Onboarding> {
             onLogin: () => Navigator.push(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) => Home_Screen(),
+                pageBuilder: (context, animation, secondaryAnimation) => Login(),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
   return FadeTransition(
     opacity: animation,

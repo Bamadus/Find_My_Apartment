@@ -1,4 +1,4 @@
-import "package:find_my_apartment/Presentation/Abstract/page_indicator.dart";
+import "package:find_my_apartment/Presentation/Abstract/onboarding/page_indicator.dart";
 import "package:find_my_apartment/Presentation/onboarding/next_onboarding.dart";
 import "package:flutter/material.dart";
 import "package:lottie/lottie.dart";
@@ -93,14 +93,18 @@ class Continue_Onboarding extends StatelessWidget {
           ),
           SizedBox(height: screenHeight(context)*0.1),
           OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Color(0xff33415c),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(5),
+                overlayColor: WidgetStateProperty.all(Color(0xff778da9).withOpacity(0.5)),
+                backgroundColor: MaterialStateProperty.all(Color(0xff33415c)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 15)),
               ),
-              onPressed: ()=> onContinue, 
+              onPressed: ()=> this.onContinue, 
               child: Text(
                 "Continue",
                 style: TextStyle(

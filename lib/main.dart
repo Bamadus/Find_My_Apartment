@@ -1,4 +1,4 @@
-import 'package:find_my_apartment/Presentation/Abstract/app_intro.dart';
+import 'package:find_my_apartment/Presentation/Abstract/onboarding/app_intro.dart';
 import 'package:flutter/material.dart';
 
 void main(){

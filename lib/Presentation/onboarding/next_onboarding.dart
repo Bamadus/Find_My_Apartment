@@ -1,4 +1,4 @@
-import "package:find_my_apartment/Presentation/Abstract/page_indicator.dart";
+import "package:find_my_apartment/Presentation/Abstract/onboarding/page_indicator.dart";
 import "package:find_my_apartment/Presentation/onboarding/login_onboardig.dart";
 import "package:flutter/material.dart";
 import "package:lottie/lottie.dart";
@@ -30,7 +30,7 @@ class next_Onboarding extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          top: screenHeight(context) * .5,
+          top: screenHeight(context) * .55,
           child:Center(
           child: Text(
             "Feel like a local, wherever",
@@ -45,7 +45,7 @@ class next_Onboarding extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          top: screenHeight(context) * .54,
+          top: screenHeight(context) * .59,
           child:Center(
           child: Text(
             "you land...",
@@ -58,7 +58,7 @@ class next_Onboarding extends StatelessWidget {
           ),
         ),),
         Positioned(
-          top: screenHeight(context) * .6,
+          top: screenHeight(context) * .64,
           left: screenHeight(context) * .05,
           right: screenHeight(context) * .05,
           child: Center(
@@ -73,7 +73,7 @@ class next_Onboarding extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: screenHeight(context) * .64,
+          top: screenHeight(context) * .68,
           left: screenHeight(context) * .05,
           right: screenHeight(context) * .05,
           child: Center(
@@ -110,14 +110,18 @@ class next_Onboarding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xff33415c),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                  style: ButtonStyle(
+                elevation: MaterialStateProperty.all(5),
+                overlayColor: WidgetStateProperty.all(Color(0xff778da9).withOpacity(0.5)),
+                backgroundColor: MaterialStateProperty.all(Color(0xff33415c)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  onPressed: this.onSkip, 
+                ),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 15)),
+              ),
+                  onPressed: onSkip, 
                   child: Text(
                     "Skip",
                     style: TextStyle(
@@ -129,32 +133,18 @@ class next_Onboarding extends StatelessWidget {
                       )
                 ),
                 OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xff33415c),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
+                  style: ButtonStyle(
+                elevation: MaterialStateProperty.all(5),
+                overlayColor: WidgetStateProperty.all(Color(0xff778da9).withOpacity(0.5)),
+                backgroundColor: MaterialStateProperty.all(Color(0xff33415c)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  onPressed:this.onNext,
-//                      Navigator.push(
-//   context,
-//   PageRouteBuilder(
-//     pageBuilder: (context, animation, secondaryAnimation) => login_onboarding(),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       final tween = Tween(
-//         begin: Offset(1.0, 0.0),  // starts from right
-//         end: Offset.zero,
-//       ).chain(CurveTween(curve: Curves.easeInOut));
-
-//       return SlideTransition(
-//         position: animation.drive(tween),
-//         child: child,
-//       );
-//     },
-//     transitionDuration: Duration(milliseconds: 300),
-//   ),
-// );
+                ),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 15)),
+              ),
+                  onPressed:onNext,
                   // }, 
                   child: Text(
                     "Next",

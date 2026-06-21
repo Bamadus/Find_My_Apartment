@@ -65,6 +65,10 @@ flutter:
      - assets/lotties/Home2.json
      - assets/lotties/house_deal.json
      - assets/Images/Home.png
+     - assets/lotties/Authentication_Lock_Login.json
+     - assets/lotties/Login1.json
+     - assets/lotties/Login.json
+     - assets/lotties/Login2.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
