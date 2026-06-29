@@ -10,8 +10,16 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
+  final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
+
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+
+  String errormessage= '';
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String? _username_error;
+  String? _pswrd_error;
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +43,17 @@ class _LoginState extends State<Login> {
                ),
           )
           ),
-          Container(
-            // color:Colors.red,
-            margin: EdgeInsets.only(
-              bottom: screenHeight(context) * 0.05,
-              // right: screenWidth(context) * 0.05
-            ),
-            padding: EdgeInsets.only(right:20),
-            child: Center(
-              child: Lottie.asset(
-                'assets/lotties/Login.json',
-                fit: BoxFit.fitHeight,
-                width: screenHeight(context) * 1,
-                height: screenHeight(context) * 0.7
-                ),
-            ),
+          Positioned(
+            // top: screenHeight(context)*.45,
+            // right: screenWidth(context) * 0.5,
+            // left: .19,
+            bottom: screenHeight(context)*.15,
+            child: Lottie.asset(
+              'assets/lotties/Login.json',
+              // fit: BoxFit.fitHeight,
+              // width: screenWidth(context) * 0.5,
+              // height: screenHeight(context) * 0.7
+              ),
           ),
           Container(
             decoration: BoxDecoration(
@@ -69,16 +73,27 @@ class _LoginState extends State<Login> {
               ),
               // Login Details......
             child: Center(
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  fontSize: screenHeight(context) * 0.05,
-                  color: Color(0xff33415c),
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  fontFamily: 'SourceSansPro',
-                ),
-              ),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Form(
+                    key: _loginKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,                      children: [
+                        Text("Username:"),
+                        TextField(
+                          controller: _usernameController,
+                          decoration: InputDecoration(
+
+                          ),
+                        )
+                      ],
+                    )
+                    )
+                ],
+              )
             ),
           ),
           Positioned(
