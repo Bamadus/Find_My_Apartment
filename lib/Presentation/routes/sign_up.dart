@@ -1,198 +1,172 @@
-// import 'package:cnn/data/auth/auth_service.dart';
-// import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cnn/features/presentation/widget/login_abst/namefield.dart';
-// import '../widget/login_abst/mailfield.dart';
-// import '../widget/sign_up/pwordfield.dart';
+import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
+import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-// class SignUp extends StatefulWidget{
-//   const SignUp({super.key});
+class SignUp extends StatefulWidget {
 
-//   @override
-//   State<SignUp> createState() => _SignUpState();
-// }
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
 
-// class _SignUpState extends State<SignUp> {
-//   final GlobalKey<FormState> _signUpKey = GlobalKey<FormState>();
+class _SignUpState extends State<SignUp> {
 
-//   String errormessage= '';
-//   final _usernameController = TextEditingController();
-//   final _passwordController = TextEditingController();
-//   final _mailController = TextEditingController();
-//   String? _mailError_txt;
-//   String? _passwordError_txt;
-//   String? _nameError_txt;
+final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
 
-//   _validateInput() {
-//     if (_mailController.text.length < 2) {
-//       return _mailError_txt = 'Must be at least 3 characters';
-//     }
-//   }
+  double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-//   void register()async{
-//     try{
-//       await authService.value.createAccount(
-//           email: _mailController.text,
-//           password: _passwordController.text,
-//           username: _usernameController.text,
-//       );
-//       Center(
-//         child: CircularProgressIndicator(
-//           value: null,
-//           color: Color(0xff33415c),
-//           semanticsLabel: "Signing Up...",
-//         ),
-//       );
-//       Navigator.pop(context);
-//       ScaffoldMessenger.of(context).showSnackBar(
-//           SnackBar(
-//             content: Text(
-//               "Sign Up Successfully...",
-//               style: TextStyle(
-//                 fontSize: 19,
-//                 color: Color(0xff33415c),
-//                 fontWeight: FontWeight.normal,
-//                 fontFamily: 'SourceSansPro',
-//               ),
-//             ),
-//             elevation: 5,
-//             backgroundColor: Color(0xffedf6f9).withOpacity(0.89),
-//             padding: EdgeInsets.all(15),
-//             behavior: SnackBarBehavior.floating,
-//             margin: EdgeInsets.only(bottom: 100, left: 20, right: 20),
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(12),
-//             ),
-//           )
-//       );
-//       } on FirebaseAuthException catch(e){
-//       setState(() {
-//         errormessage = e.message!;
-//       });
-//     }
-//   }
-
-//   // Future<void> createUSer()async{
-//   //   final userCredentials= await FirebaseAuth.instance.createUserWithEmailAndPassword(
-//   //       email:_mailController.text.trim(),
-//   //       password:_passwordController.text.trim());
-//   //   print(userCredentials);
-//   // }
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         appBar: AppBar(
-//           title: Text("Sign Up",
-//             style: TextStyle(
-//               fontSize: 35,
-//               color: Color(0xff33415c),
-//               fontWeight: FontWeight.bold,
-//               fontStyle: FontStyle.italic,
-//               fontFamily: 'SourceSansPro',
-//             ),
-//           ),
-//           centerTitle: true,
-//           backgroundColor: Color(0xffbde0fe),
-//         ),
-//         backgroundColor:Color(0xffbde0fe),
-//         body: ListView(
-//           shrinkWrap: true,
-//           children: [
-//             Container(
-//               padding: EdgeInsets.all(15),
-//               margin: EdgeInsets.only(top: 50),
-//               child:  Form(
-//                 key: _signUpKey,
-//                 autovalidateMode: AutovalidateMode.onUserInteraction,
-//                 child:Column(
-//                   children: [
-//                     Namefield(
-//                       controller: _usernameController,
-//                       labelText: 'Username:',
-//                       validator: (v){
-//                         if(v!.isEmpty){
-//                           return "This field is required";
-//                         }else{
-//                           return null;
-//                         }
-//                       },
-//                       maxLength: 15,
-//                       keyboardType: TextInputType.name,
-//                     ),
-//                     SizedBox(height: 15,),
-//                     mailfield(
-//                       controller:_mailController,
-//                       labelText: 'Mail:',
-//                       errorText: _mailError_txt,
-//                       validator: (v){
-//                         if(v!.isEmpty){
-//                           return "This field is required";
-//                         }else{
-//                           return null;
-//                         }
-//                       },
-//                       keyboardType: TextInputType.name,
-//                     ),
-//                     SizedBox(height: 15,),
-//                     AppPassword(
-//                       controller: _passwordController,
-//                       labelText: 'Password:',
-//                       isPasswordobscure: true,
-//                       validator: (v){
-//                         if(v!.isEmpty){
-//                           return "This field is Required";
-//                         }else{
-//                           return null;
-//                         }
-//                       },
-//                     ),
-//                     SizedBox(height: 15,),
-//                     Container(
-//                       height: 115,
-//                       width: 235,
-//                       padding: EdgeInsets.only(bottom: 21,top: 15,left: 15, right: 15),
-//                       child: ElevatedButton(
-//                         onPressed: (){
-//                           if (_signUpKey.currentState!.validate()){
-//                             register();
-//                             // if(_mailError_txt == null){
-//                             //   Navigator.push(
-//                             //       context,
-//                             //       MaterialPageRoute(
-//                             //           builder: (context)=> Login_screen())
-//                             //   );
-//                             //   Navigator.pop(context);
-//                             // }
-//                           }
-//                         },
-//                         style: ElevatedButton.styleFrom(
-//                           foregroundColor: Colors.white,
-//                           elevation: 8,
-//                           shadowColor:Color(0xffb6ccfe),
-//                           textStyle: TextStyle(
-//                             fontSize: 45,
-//                             fontWeight: FontWeight.bold,
-//                             fontStyle: FontStyle.italic,
-//                             fontFamily: 'SourceSansPro',
-//                           ),
-//                           backgroundColor: Color(0xff33415c),
-//                           shape: RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(8),
-//                           ),
-//                         ),
-//                         child: Text("Sign Up"),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor:Color(0xffe3f2fd),
+      body: Stack(
+        children: [
+          Positioned(
+            child: Lottie.asset(
+              'assets/lotties/Login.json',
+              
+              ),
+          ),
+          ListView(
+                padding: EdgeInsets.all(15),
+                // shrinkWrap: true,
+                children:[
+                  SizedBox(height: screenHeight(context)*0.1,),
+                  CircleAvatar(
+                radius: 79,
+                backgroundColor: Color.fromARGB(255, 134, 159, 209).withOpacity(0.65),
+                child:Icon(
+                  size: 100,
+                  color: Color.fromARGB(150, 24, 24, 25).withOpacity(0.65),
+                  Icons.person_2_rounded)
+                ),
+              SizedBox(height: 20,),
+                  Form(
+                    key: _signupkey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:[
+                        Text('Username',
+                                style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:16,
+                                    color: Color(0xff092C4C),
+                                    fontWeight: FontWeight.w400
+                        )),
+                        UserField(
+                        controller: _usernameController,
+                        hintText: "user@name",
+                        validator: (v){
+                                  if(v!.isEmpty){
+                                    return "This field is required";
+                                  }
+                                  return null;
+                                },
+                        ),
+                        SizedBox(height: 15,),
+                        Text('Email',
+                                style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:16,
+                                    color: Color(0xff092C4C),
+                                    fontWeight: FontWeight.w400
+                        )),
+                        UserField(
+                        controller: _usernameController,
+                        hintText: "e.g:Username@gmail.com",
+                        validator: (v){
+                                  if(v!.isEmpty){
+                                    return "This field is required";
+                                  }
+                                  return null;
+                                },
+                        ),
+                        SizedBox(height: 15,),
+                        Text('Password',
+                                style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:16,
+                                    color: Color(0xff092C4C),
+                                    fontWeight: FontWeight.w400
+                        )),
+                        Password(
+                          controller: _passwordController,
+                          hintText: "P4ssword",
+                          validator: (v){
+                                  if(v!.isEmpty){
+                                    return "This field is required";
+                                  }
+                                  return null;
+                                },
+                        ),
+                        SizedBox(height: 15,),
+                      ],
+                    )
+                    ),
+                    
+                    Positioned(
+            top: screenHeight(context) * .86,
+            left: screenWidth(context) * .27,
+            child: Center(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: WidgetStateProperty.all(5),
+                  overlayColor: WidgetStateProperty.all(Color.fromARGB(255, 20, 55, 101).withOpacity(0.5)),
+                  backgroundColor: WidgetStateProperty.all(Color.fromARGB(255, 97, 144, 238)),
+                  foregroundColor: WidgetStateProperty.all(Color(0xffe3f2fd)),
+                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 20))
+                ),
+                onPressed: (){
+                  if(_signupkey.currentState!.validate()){
+
+                  }
+                }, 
+              child: Text("Sign Up",
+              style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      // fontFamily: 'SourceSansPro',
+                      color: Color(0xffe3f2fd),
+                      ),
+              )
+              ),
+            ),
+          ),
+          Row(
+                                  children: [
+                                    const Text('Login Instead?',
+                                      style: TextStyle(
+                                          fontSize:16,
+                                          fontFamily: 'SourceSansPro',
+                                          color: Color(0xff626262),
+                                          fontWeight: FontWeight.w400
+                                      ),
+                                    ),
+                                    TextButton(onPressed:(){},
+                                        child:const Text('Login',
+                                          style: TextStyle(
+                                            color: Color(0xff0085FF),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                            fontFamily: 'SourceSansPro',
+                                            decoration: TextDecoration.underline,
+                                            decorationColor: Color(0xff0085FF),
+                                          ),
+                                        )
+                                    )
+                                  ],
+                                ),
+                ],
+              )
+        ],
+      ),
+    );
+  }
+}

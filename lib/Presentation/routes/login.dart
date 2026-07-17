@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
               child: ListView(
                 padding: EdgeInsets.only(left:10, right: 10),
                 // shrinkWrap: true,
-                children: [
+                children:[
                   SizedBox(height: screenHeight(context)*0.05,),
                   CircleAvatar(
                 radius: 79,
@@ -212,9 +212,9 @@ class _LoginState extends State<Login> {
             child: Center(
               child: ElevatedButton(
                 style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(5),
+                  elevation: WidgetStateProperty.all(5),
                   overlayColor: WidgetStateProperty.all(Color.fromARGB(255, 20, 55, 101).withOpacity(0.5)),
-                  backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 97, 144, 238)),
+                  backgroundColor: WidgetStateProperty.all(Color.fromARGB(255, 97, 144, 238)),
                   foregroundColor: WidgetStateProperty.all(Color(0xffe3f2fd)),
                   padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 20))
                 ),

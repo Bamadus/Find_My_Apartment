@@ -148,7 +148,7 @@ class AppPassword extends StatefulWidget {
   final Function? onTap;
 
   AppPassword(
-      {Key? key,
+      {super.key,
         required this.controller,
         required this.hintText,
         this.textInputType = TextInputType.text,
@@ -157,8 +157,7 @@ class AppPassword extends StatefulWidget {
         this.obscureText = true,
         this.isPasswordobscure = false,
         this.maxLines = 1,
-        this.onTap})
-      : super(key: key);
+        this.onTap});
 
   @override
   State<AppPassword> createState() => _AppPasswordState();
@@ -223,16 +222,15 @@ class UserField extends StatefulWidget {
   final int? maxLines;
   final Function? onTap;
 
-  UserField(
-      {Key? key,
+  const UserField(
+      {super.key,
         required this.controller,
         required this.hintText,
         this.textInputType = TextInputType.text,
         this.validator,
         this.onChanged,
         this.maxLines = 1,
-        this.onTap})
-      : super(key: key);
+        this.onTap});
 
   @override
   State<UserField> createState() => _UserFieldState();

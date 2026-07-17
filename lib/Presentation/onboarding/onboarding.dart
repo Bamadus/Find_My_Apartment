@@ -1,8 +1,8 @@
-import "package:find_my_apartment/Presentation/routes/home_screen.dart";
 import "package:find_my_apartment/Presentation/onboarding/continue_onboarding.dart";
 import "package:find_my_apartment/Presentation/onboarding/login_onboardig.dart";
 import "package:find_my_apartment/Presentation/onboarding/next_onboarding.dart";
 import "package:find_my_apartment/Presentation/routes/login.dart";
+import "package:find_my_apartment/Presentation/routes/sign_up.dart";
 import "package:flutter/material.dart";
 
 class Onboarding extends StatefulWidget {
@@ -68,9 +68,24 @@ class _OnboardingState extends State<Onboarding> {
                 transitionDuration: Duration(milliseconds: 300),
               ),
             ),
-            onSignUp:(){
-              // Handle sign-up logic here
-            }
+            onSignUp:()=> Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) => SignUp(),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  return FadeTransition(
+    opacity: animation,
+    child: ScaleTransition(
+      scale: Tween(begin: 0.92, end: 1.0).animate(
+        CurvedAnimation(parent: animation, curve: Curves.easeOut),
+      ),
+      child: child,
+    ),
+  );
+},
+                transitionDuration: Duration(milliseconds: 300),
+              ),
+            ),
           ),
         ],
       ),

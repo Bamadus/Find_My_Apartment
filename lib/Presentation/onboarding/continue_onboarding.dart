@@ -94,17 +94,17 @@ class Continue_Onboarding extends StatelessWidget {
           SizedBox(height: screenHeight(context)*0.1),
           OutlinedButton(
               style: ButtonStyle(
-                elevation: MaterialStateProperty.all(5),
+                elevation: WidgetStateProperty.all(5),
                 overlayColor: WidgetStateProperty.all(Color(0xff778da9).withOpacity(0.5)),
-                backgroundColor: MaterialStateProperty.all(Color(0xff33415c)),
-                shape: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(Color(0xff33415c)),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 15)),
+                padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 15)),
               ),
-              onPressed: ()=> this.onContinue, 
+              onPressed: ()=> onContinue, 
               child: Text(
                 "Continue",
                 style: TextStyle(
