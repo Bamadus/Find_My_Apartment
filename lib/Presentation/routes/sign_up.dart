@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class SignUp extends StatefulWidget {
+  const SignUp({super.key});
+
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -26,12 +28,12 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
       backgroundColor:Color(0xffe3f2fd),
       body: Stack(
         children: [
-          Positioned(
-            child: Lottie.asset(
-              'assets/lotties/Login.json',
+          // Positioned(
+          //   child: Lottie.asset(
+          //     'assets/lotties/Authentication_Lock_Login.json',
               
-              ),
-          ),
+          //     ),
+          // ),
           ListView(
                 padding: EdgeInsets.all(15),
                 // shrinkWrap: true,
@@ -98,7 +100,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                         )),
                         Password(
                           controller: _passwordController,
-                          hintText: "P4ssword",
+                          hintText: "P4ssw@rd",
                           validator: (v){
                                   if(v!.isEmpty){
                                     return "This field is required";
@@ -149,7 +151,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                                           fontWeight: FontWeight.w400
                                       ),
                                     ),
-                                    TextButton(onPressed:(){},
+                                    TextButton(onPressed:(){Navigator.pop(context);},
                                         child:const Text('Login',
                                           style: TextStyle(
                                             color: Color(0xff0085FF),

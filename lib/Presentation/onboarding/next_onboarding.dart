@@ -1,5 +1,4 @@
 import "package:find_my_apartment/Presentation/Abstract/onboarding/page_indicator.dart";
-import "package:find_my_apartment/Presentation/onboarding/login_onboardig.dart";
 import "package:flutter/material.dart";
 import "package:lottie/lottie.dart";
 

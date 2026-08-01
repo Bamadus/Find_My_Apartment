@@ -10,7 +10,7 @@ class Password extends StatefulWidget{
   final int? maxLines;
   final int? maxlength;
   final Function? onTap;
-  String? hintText;
+  final String? hintText;
 
   Password({
     super.key,
@@ -18,7 +18,7 @@ class Password extends StatefulWidget{
     this.textInputType = TextInputType.text,
     this.validator,
     this.onChanged,
-    this.hintText,
+    required this.hintText,
     this.obscureText = true,
     this.isPasswordobscure = false,
     this.maxLines = 1,
@@ -38,7 +38,7 @@ class _PasswordState extends State<Password>{
   bool _numb = false;
   bool _length = false;
 
-  _validatepsswrd(String psswrd){
+  void _validatepsswrd(String psswrd){
     setState((){
       _uppercase = psswrd.contains(RegExp(r'[A-Z]'));
       _lowercase = psswrd.contains(RegExp(r'[a-z]'));
@@ -78,6 +78,7 @@ class _PasswordState extends State<Password>{
               }) => null,
           decoration: InputDecoration(
             isDense: true,
+            hintText: widget.hintText,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: const BorderSide(
