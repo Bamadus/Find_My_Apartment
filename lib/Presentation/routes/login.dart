@@ -1,4 +1,6 @@
+import 'package:find_my_apartment/Data/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,6 +24,24 @@ class _LoginState extends State<Login> {
   String? _username_error = "mp;e";
   String? _pswrd_error;
   bool _isChecked = false;
+
+  void user_login() async {
+    _validateInput();
+    if (_username_error == null && _pswrd_error == null) {
+      try {
+        await authService.value.login(
+          email: _usernameController.text,
+          password: _passwordController.text,
+        );
+        // Handle successful login, e.g., navigate to the next screen
+        Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          errormessage = e.message ?? 'An error occurred during login.';
+        });
+      }
+    }
+  }
 
   void _validateInput() {
     setState((){
@@ -220,7 +240,7 @@ class _LoginState extends State<Login> {
                 ),
                 onPressed: (){
                   if(_loginKey.currentState!.validate()){
-
+                    user_login();
                   }
                 }, 
               child: Text("Login",

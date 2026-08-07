@@ -1,7 +1,9 @@
+import 'package:find_my_apartment/Data/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:find_my_apartment/Presentation/routes/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -20,7 +22,31 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _mailController = TextEditingController();
 
+  Future<String?> user_signup() async {
+    try{
+      String? userCredential = await authService.value.createAccount(
+        email: _mailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+      );
+    // await userCredential.user?.updateDisplayName(username);
+    // await userCredential.user?.reload();
+    return "Success";
+    } on FirebaseAuthException catch (e) {
+      if(e.code == 'weak-password'){
+        return 'The password provided is too weak.';
+      }else if(e.code == 'email-already-in-use'){
+        return e.message;
+      }
+      setState(() {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('There was an error during signup: ${e.message}')),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +107,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                                     fontWeight: FontWeight.w400
                         )),
                         UserField(
-                        controller: _usernameController,
+                        controller: _mailController,
                         hintText: "e.g:Username@gmail.com",
                         validator: (v){
                                   if(v!.isEmpty){
@@ -127,9 +153,30 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 ),
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
-
-                  }
-                }, 
+                    user_signup().then((value) {
+                      if(value == "Success"){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: 
+                            Text('Signup successful! Please log in.',
+                            style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                    fontSize:14,
+                                    color: Color(0xff092C4C),     
+                        )),
+                          backgroundColor: Color(0xffe3f2fd),
+                          duration: Duration(seconds: 2),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: const EdgeInsets.all(15),
+                      ),
+                    );
+                      Navigator.pop(context);
+                    }
+                    });
+                    }else{}
+                },
               child: Text("Sign Up",
               style: TextStyle(
                       fontSize: 25,
