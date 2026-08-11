@@ -1,5 +1,6 @@
 import 'package:find_my_apartment/Data/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:find_my_apartment/Presentation/routes/reset_psswrd.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -205,7 +206,9 @@ class _LoginState extends State<Login> {
                                           fontWeight: FontWeight.w400
                                       ),
                                     ),
-                                    TextButton(onPressed:(){},
+                                    TextButton(onPressed:(){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Reset_Psswrd()));
+                                    },
                                         child:const Text('Reset Password',
                                           style: TextStyle(
                                             color: Color(0xff0085FF),
