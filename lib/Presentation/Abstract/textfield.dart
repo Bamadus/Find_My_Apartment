@@ -144,6 +144,7 @@ class AppPassword extends StatefulWidget {
   bool isPasswordobscure;
   final TextInputType textInputType;
   final FormFieldValidator<String>? validator;
+  final int? maxlen;
   final int? maxLines;
   final Function? onTap;
 
@@ -156,6 +157,7 @@ class AppPassword extends StatefulWidget {
         this.onChanged,
         this.obscureText = true,
         this.isPasswordobscure = false,
+        this.maxlen,
         this.maxLines = 1,
         this.onTap});
 
@@ -168,6 +170,14 @@ class _AppPasswordState extends State<AppPassword> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      maxLength: widget.maxlen,
+      // this build context is used to hide the label
+      buildCounter: (
+              BuildContext context, {
+                required int currentLength,
+                required bool isFocused,
+                required int? maxLength,
+              }) => null,
       decoration: InputDecoration(
         isDense: true,
         hintText: widget.hintText,

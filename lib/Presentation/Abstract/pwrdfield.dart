@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Password extends StatefulWidget{
@@ -63,6 +65,7 @@ class _PasswordState extends State<Password>{
   }
 
 
+
   @override
   Widget build(BuildContext context){
     return Column(
@@ -70,6 +73,7 @@ class _PasswordState extends State<Password>{
         TextFormField(
           controller: widget.controller,
           maxLength: 8,
+          // this code below is to hide the label of the max length
           buildCounter: (
               BuildContext context, {
                 required int currentLength,
