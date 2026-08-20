@@ -1,6 +1,9 @@
+import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
 import 'package:find_my_apartment/Presentation/Abstract/onboarding/app_intro.dart';
+import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -8,7 +11,14 @@ void main() async {
 await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const Home());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: const Home(),
+    ),
+    );
 }
 
 class Home extends StatefulWidget {
@@ -19,11 +29,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Splash(),
+      home: Auth_layout(),
     );
   }
 }

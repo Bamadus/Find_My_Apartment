@@ -1,9 +1,12 @@
-import 'package:find_my_apartment/Data/auth/auth_service.dart';
+import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
+import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:find_my_apartment/Presentation/routes/reset_psswrd.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -15,6 +18,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
+  AuthProvider get authProvider => Provider.of<AuthProvider>(context);
 
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -30,12 +34,17 @@ class _LoginState extends State<Login> {
     _validateInput();
     if (_username_error == null && _pswrd_error == null) {
       try {
-        await authService.value.login(
-          email: _usernameController.text,
-          password: _passwordController.text,
-        );
-        // Handle successful login, e.g., navigate to the next screen
-        Navigator.pop(context);
+          bool success = await context.read<AuthProvider>().login(
+                _usernameController.text,
+                _passwordController.text,
+              );
+
+          if (!success) {
+            // Show error if login fails
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(authProvider.errorMessage ?? "Login Failed")),
+            );
+          }
       } on FirebaseAuthException catch (e) {
         setState(() {
           errormessage = e.message ?? 'An error occurred during login.';
@@ -243,16 +252,22 @@ class _LoginState extends State<Login> {
                 ),
                 onPressed: (){
                   if(_loginKey.currentState!.validate()){
-                    user_login();
+                    if(authProvider.status == AuthStatus.authenticating){
+                      CircularProgressIndicator();
+                    }else{
+                      user_login();
+                    }
                   }
                 }, 
-              child: Text("Login",
-              style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+              child: authProvider.status == AuthStatus.authenticating
+                      ? const CircularProgressIndicator()
+                      : Text("Login",
+                         style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
                       // fontFamily: 'SourceSansPro',
-                      color: Color(0xffe3f2fd),
-                      ),
+                        color: Color(0xffe3f2fd),
+                       ),
               )
               ),
             ),

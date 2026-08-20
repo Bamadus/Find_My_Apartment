@@ -1,9 +1,11 @@
-import 'package:find_my_apartment/Data/auth/auth_service.dart';
+import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:find_my_apartment/Presentation/routes/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -26,7 +28,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
 
   Future<String?> user_signup() async {
     try{
-      String? userCredential = await authService.value.createAccount(
+      await _auth.signUp(
         email: _mailController.text,
         password: _passwordController.text,
         username: _usernameController.text,
@@ -46,6 +48,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
         );
       });
     }
+    return null;
   }
 
   @override
@@ -153,28 +156,10 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 ),
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
-                    user_signup().then((value) {
-                      if(value == "Success"){
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: 
-                            Text('Signup successful! Please log in.',
-                            style: TextStyle(
-                                      fontFamily: 'SourceSansPro',
-                                    fontSize:14,
-                                    color: Color(0xff092C4C),     
-                        )),
-                          backgroundColor: Color(0xffe3f2fd),
-                          duration: Duration(seconds: 2),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          ),
-                          margin: const EdgeInsets.all(15),
-                      ),
-                    );
-                      Navigator.pop(context);
+                    if(authProvider.status == AuthStatus.authenticating){
+                      user_signup();
+
                     }
-                    });
                     }else{}
                 },
               child: Text("Sign Up",
