@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
-
   @override
   State<Splash> createState() => _SplashState();
 }
@@ -25,8 +24,9 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     return Timer(duration, () {
       if (mounted) {
         Timer(const Duration(seconds: 5), () {
-          // Navigator.pushReplacement(context,
-          //     MaterialPageRoute(builder: (context) => Onboarding()));
+          if (!mounted) return; 
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => Onboarding()));
         });
       }
     });

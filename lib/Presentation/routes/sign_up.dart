@@ -39,18 +39,39 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: 
-                Text(auth.errorMessage ?? "Login Failed"),
-                ),
-            );
+                Text(
+                  auth.errorMessage ?? "Login Failed",
+                  style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:18,
+                                    color: Color(0xffedf2fb),     
+                        )),
+                          backgroundColor: Color.fromARGB(255, 23, 202, 98),
+                          duration: Duration(seconds: 3),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(left: 15,
+                          right: 15, 
+                          bottom: 150
+                          ),
+                  ),
+                );
+        }else{
+          Navigator.pop(context);
         }
     } on FirebaseAuthException catch (e) {
       if(mounted){
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('There was an error during signup: ${e.message}')),
+          SnackBar(content: 
+          Text('There was an error during signup: ${e.message}')
+          ),
         );
       }
     }
-    return null;
+    return 'Okayyyy...';
   }
 
   @override
@@ -159,7 +180,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
                     if(AuthStatus == AuthStatus.authenticating){
-                    return print("Authenticating...");
+                      return debugPrint("Authenticating...");
                       // CircularProgressIndicator();
                     }else{
                       user_signup();

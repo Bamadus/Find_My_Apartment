@@ -44,6 +44,8 @@ class _LoginState extends State<Login> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(authProvider.errorMessage ?? "Login Failed")),
             );
+          }else{
+            Navigator.pop(context);
           }
       } on FirebaseAuthException catch (e) {
         setState(() {
