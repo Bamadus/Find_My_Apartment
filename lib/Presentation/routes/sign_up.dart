@@ -3,9 +3,10 @@ import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:find_my_apartment/Presentation/routes/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -19,6 +20,7 @@ class _SignUpState extends State<SignUp> {
 
 final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
 
+
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
@@ -27,26 +29,26 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
   final TextEditingController _mailController = TextEditingController();
 
   Future<String?> user_signup() async {
+     final auth = context.read<AuthProvider>();
     try{
-      await _auth.signUp(
-        email: _mailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text,
-      );
-    // await userCredential.user?.updateDisplayName(username);
-    // await userCredential.user?.reload();
-    return "Success";
+      bool success = await context.read<AuthProvider>().signUp(
+        _mailController.text.trim(), 
+        _passwordController.text.trim(), 
+        _usernameController.text.trim());
+        if(!success && context.mounted){
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 
+                Text(auth.errorMessage ?? "Login Failed"),
+                ),
+            );
+        }
     } on FirebaseAuthException catch (e) {
-      if(e.code == 'weak-password'){
-        return 'The password provided is too weak.';
-      }else if(e.code == 'email-already-in-use'){
-        return e.message;
-      }
-      setState(() {
+      if(mounted){
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('There was an error during signup: ${e.message}')),
         );
-      });
+      }
     }
     return null;
   }
@@ -156,12 +158,13 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 ),
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
-                    if(authProvider.status == AuthStatus.authenticating){
+                    if(AuthStatus == AuthStatus.authenticating){
+                    return print("Authenticating...");
+                      // CircularProgressIndicator();
+                    }else{
                       user_signup();
-
-                    }
-                    }else{}
-                },
+                    };
+                  }},
               child: Text("Sign Up",
               style: TextStyle(
                       fontSize: 25,
