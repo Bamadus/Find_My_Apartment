@@ -29,7 +29,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
   final TextEditingController _mailController = TextEditingController();
 
   Future<String?> user_signup() async {
-     final auth = context.read<AuthProvider>();
+     var auth = context.read<AuthProvider>();
     try{
       bool success = await context.read<AuthProvider>().signUp(
         _mailController.text.trim(), 
@@ -41,6 +41,30 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 content: 
                 Text(
                   auth.errorMessage ?? "Login Failed",
+                  style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:18,
+                                    color: Color(0xffedf2fb),     
+                        )),
+                          backgroundColor: Color(0xffba324f),
+                          duration: Duration(seconds: 3),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(left: 15,
+                          right: 15, 
+                          bottom: 150
+                          ),
+                  ),
+                );
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 
+                Text(
+                  "Sign Up Successful.",
                   style: TextStyle(
                                     fontFamily: 'SourceSansPro',
                                     fontSize:18,
@@ -59,14 +83,29 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                           ),
                   ),
                 );
-        }else{
           Navigator.pop(context);
         }
     } on FirebaseAuthException catch (e) {
       if(mounted){
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: 
-          Text('There was an error during signup: ${e.message}')
+          Text('There was an error during signup: ${e.message}',
+          style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:18,
+                                      color: Color(0xffedf2fb),     
+                          )),
+                            backgroundColor: Color(0xffba324f),
+                            duration: Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: EdgeInsets.all(15),
+                            margin: const EdgeInsets.only(left: 15,
+                            right: 15, 
+                            bottom: 150
+                            ),
           ),
         );
       }
@@ -179,21 +218,28 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 ),
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
-                    if(AuthStatus == AuthStatus.authenticating){
-                      return debugPrint("Authenticating...");
-                      // CircularProgressIndicator();
-                    }else{
                       user_signup();
                     };
-                  }},
-              child: Text("Sign Up",
+                  },
+              child: Consumer<AuthProvider>(
+                builder:(context, authProvider, child){
+                  return authProvider.status == AuthStatus.authenticating
+                  ?
+                  const CircularProgressIndicator(
+                    color: Color(0xffe3f2fd),
+                    strokeWidth: 6,
+                  )
+                  :
+                  Text("Sign Up",
               style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       // fontFamily: 'SourceSansPro',
                       color: Color(0xffe3f2fd),
                       ),
-              )
+              );
+                }
+                )
               ),
             ),
           ),

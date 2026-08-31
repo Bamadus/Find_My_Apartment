@@ -23,46 +23,50 @@ class Auth_layout extends StatelessWidget {
       case AuthStatus.authenticating:
         return Scaffold(body: Center(child: CircularProgressIndicator()));
       case AuthStatus.unauthenticated:
-        return SnackBar(
-            content: Text(
-              'This field is Required',
-              style: TextStyle(
-                                    fontFamily: 'SourceSansPro',
-                                    fontSize:18,
-                                    color: Color(0xffedf2fb),     
-                        )),
-                          backgroundColor: Color(0xffba324f),
-                          duration: Duration(seconds: 2),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.all(15),
-                          margin: const EdgeInsets.only(left: 15,
-                          right: 15, 
-                          bottom: 150
-                          ),
+        return ScaffoldMessenger(
+          child: SnackBar(
+              content: Text(
+                'Sign Up Error.',
+                style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:18,
+                                      color: Color(0xffedf2fb),     
+                          )),
+                            backgroundColor: Color(0xffba324f),
+                            duration: Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: EdgeInsets.all(15),
+                            margin: const EdgeInsets.only(left: 15,
+                            right: 15, 
+                            bottom: 150
+                            ),
+          ),
         );
       case AuthStatus.error:
-        return SnackBar(
-            content: Text(
-              AuthStatus.error as String,
-              style: TextStyle(
-                                    fontFamily: 'SourceSansPro',
-                                    fontSize:18,
-                                    color: Color(0xffedf2fb),     
-                        )),
-                          backgroundColor: Color(0xffba324f),
-                          duration: Duration(seconds: 2),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.all(15),
-                          margin: const EdgeInsets.only(left: 15,
-                          right: 15, 
-                          bottom: 150
-                          ),
+        return ScaffoldMessenger(
+          child: SnackBar(
+              content: Text(
+                AuthStatus.error as String,
+                style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:18,
+                                      color: Color(0xffedf2fb),     
+                          )),
+                            backgroundColor: Color(0xffba324f),
+                            duration: Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: EdgeInsets.all(15),
+                            margin: const EdgeInsets.only(left: 15,
+                            right: 15, 
+                            bottom: 150
+                            ),
+          ),
         );; // Show lognuin if not authenticated
       default:
         return const Login(); // Default to splash screen
