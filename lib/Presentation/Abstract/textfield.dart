@@ -227,6 +227,7 @@ class UserField extends StatefulWidget {
   final ValueChanged? onChanged;
   final TextEditingController? controller;
   final String? hintText;
+  final bool enabled;
   final TextInputType textInputType;
   final FormFieldValidator<String>? validator;
   final int? maxLines;
@@ -239,6 +240,7 @@ class UserField extends StatefulWidget {
         this.textInputType = TextInputType.text,
         this.validator,
         this.onChanged,
+        required this.enabled,
         this.maxLines = 1,
         this.onTap});
 
@@ -251,6 +253,7 @@ class _UserFieldState extends State<UserField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      enabled: widget.enabled,
       decoration: InputDecoration(
         isDense: true,
         hintText: widget.hintText,

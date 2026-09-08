@@ -2,6 +2,7 @@ import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
 import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
+import 'package:find_my_apartment/Presentation/routes/home_screen.dart';
 import 'package:find_my_apartment/Presentation/routes/reset_psswrd.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
@@ -18,42 +19,16 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
-  AuthProvider get authProvider => Provider.of<AuthProvider>(context);
-
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  late final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
 
   String errormessage= '';
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String? _username_error = "mp;e";
+  String? _username_error;
   String? _pswrd_error;
   bool _isChecked = false;
-
-  void user_login() async {
-    _validateInput();
-    if (_username_error == null && _pswrd_error == null) {
-      try {
-          bool success = await context.read<AuthProvider>().login(
-                _usernameController.text,
-                _passwordController.text,
-              );
-
-          if (!success) {
-            // Show error if login fails
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(authProvider.errorMessage ?? "Login Failed")),
-            );
-          }else{
-            Navigator.pop(context);
-          }
-      } on FirebaseAuthException catch (e) {
-        setState(() {
-          errormessage = e.message ?? 'An error occurred during login.';
-        });
-      }
-    }
-  }
 
   void _validateInput() {
     setState((){
@@ -75,33 +50,88 @@ class _LoginState extends State<Login> {
     });
   }
 
+  void user_login() async {
+     var auth = context.read<AuthProvider>();
+    _validateInput();
+    if (_username_error == null && _pswrd_error == null) {
+      try {
+          bool success = await context.read<AuthProvider>().login(
+                _usernameController.text,
+                _passwordController.text,
+              );
+
+          if (!success) {
+            // Show error if login fails
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 
+                Text(
+                  auth.errorMessage ?? "Login Failed",
+                  style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:18,
+                                    color: Color(0xffedf2fb),     
+                        )),
+                          backgroundColor: Color(0xffba324f),
+                          duration: Duration(seconds: 3),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(left: 15,
+                          right: 15, 
+                          bottom: 150
+                          ),
+                  ),
+                );
+          }else{
+            // Navigator.pushAndRemoveUntil(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const Home_Screen()),
+            //   (route) => false,
+            // );
+            Scaffold(body:Text('Loading...'),);
+          }
+      } on FirebaseAuthException catch (e) {
+        if(mounted){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: 
+          Text('An error has occured: ${e.message}',
+          style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:18,
+                                      color: Color(0xffedf2fb),     
+                          )),
+                            backgroundColor: Color(0xffba324f),
+                            duration: Duration(seconds: 2),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: EdgeInsets.all(15),
+                            margin: const EdgeInsets.only(left: 15,
+                            right: 15, 
+                            bottom: 150
+                            ),
+          ),
+        );
+      }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:Color(0xffe3f2fd),
       body: Stack(
         children: [
-          Container(
-            margin: EdgeInsets.only(
-              top:screenHeight(context)*0.1,
-              left: screenWidth(context) * 0.05,
-            ),
-            child: IconButton(
-              onPressed:(){
-                Navigator.pop(context);
-              },
-               icon: Icon(
-                 Icons.arrow_back_ios,
-                 size: screenHeight(context) * 0.05,
-                 color: Color(0xff33415c),
-               ),
-          )
-          ),
           Positioned(
             // top: screenHeight(context)*.45,
             // right: screenWidth(context) * 0.5,
             // left: .19,
-            bottom: screenHeight(context)*.15,
+            bottom: screenHeight(context)*.2,
             child: Lottie.asset(
               'assets/lotties/Login.json',
               // fit: BoxFit.fitHeight,
@@ -120,8 +150,8 @@ class _LoginState extends State<Login> {
               ),
             ),
               margin: EdgeInsets.only(
-                top: screenHeight(context) * 0.2,
-                bottom: screenHeight(context) * 0.1,
+                top: screenHeight(context) * 0.15,
+                bottom: screenHeight(context) * 0.15,
                 left:screenWidth(context) * 0.05,
                 right:screenWidth(context) * 0.05,
               ),
@@ -157,6 +187,7 @@ class _LoginState extends State<Login> {
                         )),
                         UserField(
                         controller: _usernameController,
+                        enabled: !isAuthenticating,
                         hintText: "user@name",
                         validator: (v){
                                   if(v!.isEmpty){
@@ -241,7 +272,7 @@ class _LoginState extends State<Login> {
             ),
           ),
           Positioned(
-            top: screenHeight(context) * .86,
+            top: screenHeight(context) * .8,
             left: screenWidth(context) * .27,
             child: Center(
               child: ElevatedButton(
@@ -254,26 +285,59 @@ class _LoginState extends State<Login> {
                 ),
                 onPressed: (){
                   if(_loginKey.currentState!.validate()){
-                    if(authProvider.status == AuthStatus.authenticating){
-                      CircularProgressIndicator();
-                    }else{
-                      user_login();
-                    }
+                    user_login();
                   }
                 }, 
-              child: authProvider.status == AuthStatus.authenticating
-                      ? const CircularProgressIndicator()
-                      : Text("Login",
-                         style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+              child: Consumer<AuthProvider>(
+                builder:(context, authProvider, child){
+                  return authProvider.status == AuthStatus.authenticating
+                  ?
+                  const CircularProgressIndicator(
+                    color: Color(0xffe3f2fd),
+                    strokeWidth: 6,
+                  )
+                  :
+                  Text("Login",
+              style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
                       // fontFamily: 'SourceSansPro',
-                        color: Color(0xffe3f2fd),
-                       ),
-              )
+                      color: Color(0xffe3f2fd),
+                      ),
+              );
+                }
+                )
               ),
             ),
-          )
+          ),
+          Positioned(
+            bottom: screenHeight(context) * .04,
+            left: screenWidth(context) * .05,
+            child: Row(
+                                    children: [
+                                      const Text('Sign Up Instead?',
+                                        style: TextStyle(
+                                            fontSize:16,
+                                            fontFamily: 'SourceSansPro',
+                                            color: Color(0xff626262),
+                                            fontWeight: FontWeight.w400
+                                        ),
+                                      ),
+                                      TextButton(onPressed:(){Navigator.pop(context);},
+                                          child:const Text('Sign Up',
+                                            style: TextStyle(
+                                              color: Color(0xff0085FF),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18,
+                                              fontFamily: 'SourceSansPro',
+                                              decoration: TextDecoration.underline,
+                                              decorationColor: Color(0xff0085FF),
+                                            ),
+                                          )
+                                      )
+                                    ],
+                                  ),
+          ),
         ],
       )
     );

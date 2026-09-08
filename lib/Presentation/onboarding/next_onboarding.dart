@@ -29,7 +29,7 @@ class next_Onboarding extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          top: screenHeight(context) * .55,
+          top: screenHeight(context) * .53,
           child:Center(
           child: Text(
             "Feel like a local, wherever",
@@ -44,7 +44,7 @@ class next_Onboarding extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          top: screenHeight(context) * .59,
+          top: screenHeight(context) * .56,
           child:Center(
           child: Text(
             "you land...",
@@ -57,7 +57,7 @@ class next_Onboarding extends StatelessWidget {
           ),
         ),),
         Positioned(
-          top: screenHeight(context) * .64,
+          top: screenHeight(context) * .6,
           left: screenHeight(context) * .05,
           right: screenHeight(context) * .05,
           child: Center(
@@ -72,7 +72,7 @@ class next_Onboarding extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: screenHeight(context) * .68,
+          top: screenHeight(context) * .63,
           left: screenHeight(context) * .05,
           right: screenHeight(context) * .05,
           child: Center(

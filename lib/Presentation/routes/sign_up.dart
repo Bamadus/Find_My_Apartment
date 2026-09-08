@@ -70,7 +70,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                                     fontSize:18,
                                     color: Color(0xffedf2fb),     
                         )),
-                          backgroundColor: Color.fromARGB(255, 23, 202, 98),
+                          backgroundColor: Color(0xff52b788),
                           duration: Duration(seconds: 3),
                           behavior: SnackBarBehavior.floating,
                           shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                           padding: EdgeInsets.all(15),
                           margin: const EdgeInsets.only(left: 15,
                           right: 15, 
-                          bottom: 150
+                          bottom: 100
                           ),
                   ),
                 );
@@ -110,11 +110,12 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
         );
       }
     }
-    return 'Okayyyy...';
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
+  final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
     return Scaffold(
       backgroundColor:Color(0xffe3f2fd),
       body: Stack(
@@ -155,13 +156,9 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                         )),
                         UserField(
                         controller: _usernameController,
+                        enabled: !isAuthenticating,
                         hintText: "user@name",
-                        validator: (v){
-                                  if(v!.isEmpty){
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
+                        validator: (v) => (v == null || v.isEmpty) ? "Required" : null,
                         ),
                         SizedBox(height: 15,),
                         Text('Email',
@@ -173,13 +170,9 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                         )),
                         UserField(
                         controller: _mailController,
+                        enabled: !isAuthenticating,
                         hintText: "e.g:Username@gmail.com",
-                        validator: (v){
-                                  if(v!.isEmpty){
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
+                        validator: (v) => (v == null || v.isEmpty) ? "Required" : null,
                         ),
                         SizedBox(height: 15,),
                         Text('Password',
@@ -191,13 +184,9 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                         )),
                         Password(
                           controller: _passwordController,
+                          enabled: !isAuthenticating,
                           hintText: "P4ssw@rd",
-                          validator: (v){
-                                  if(v!.isEmpty){
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
+                          validator: (v) => (v == null || v.isEmpty) ? "Required" : null,
                         ),
                         SizedBox(height: 15,),
                       ],
@@ -205,7 +194,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                     ),
                     
                     Positioned(
-            top: screenHeight(context) * .86,
+            top: screenHeight(context) * .85,
             left: screenWidth(context) * .27,
             child: Center(
               child: ElevatedButton(
@@ -258,7 +247,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                                           style: TextStyle(
                                             color: Color(0xff0085FF),
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 16,
+                                            fontSize: 18,
                                             fontFamily: 'SourceSansPro',
                                             decoration: TextDecoration.underline,
                                             decorationColor: Color(0xff0085FF),

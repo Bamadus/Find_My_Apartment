@@ -85,6 +85,10 @@ class AuthProvider with ChangeNotifier {
       // Update Firebase Profile with their Name
       await userCredential.user?.updateDisplayName(username);
       await userCredential.user?.reload();
+
+    _user = _auth.currentUser;
+    _status = AuthStatus.authenticated; 
+    notifyListeners();
       return true;
     } on FirebaseAuthException catch (e) {
       _status = AuthStatus.unauthenticated;
@@ -106,6 +110,7 @@ class AuthProvider with ChangeNotifier {
       await _auth.signInWithEmailAndPassword(
         email: email.trim(), 
         password: password.trim());
+        
       return true;
     } on FirebaseAuthException catch (e) {
       _status = AuthStatus.unauthenticated;

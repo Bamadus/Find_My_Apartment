@@ -5,6 +5,7 @@ class Password extends StatefulWidget{
   final ValueChanged? onChanged;
   final TextEditingController? controller;
   bool obscureText;
+  final bool enabled;
   bool isPasswordobscure;
   final TextInputType textInputType;
   final FormFieldValidator<String>? validator;
@@ -19,6 +20,7 @@ class Password extends StatefulWidget{
     this.textInputType = TextInputType.text,
     this.validator,
     this.onChanged,
+    required this.enabled,
     required this.hintText,
     this.obscureText = true,
     this.isPasswordobscure = false,
@@ -71,6 +73,7 @@ class _PasswordState extends State<Password>{
       children: [
         TextFormField(
           controller: widget.controller,
+          enabled: widget.enabled,
           maxLength: 8,
           // this code below is to hide the label of the max length
           buildCounter: (

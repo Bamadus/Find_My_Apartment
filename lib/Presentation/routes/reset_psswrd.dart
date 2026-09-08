@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
+import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Reset_Psswrd extends StatefulWidget{
   const Reset_Psswrd({super.key});
@@ -20,6 +22,8 @@ class _Reset_PsswrdState extends State<Reset_Psswrd> {
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   Timer? _debounce;
   String? _errorMessage;
+  late final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
+
 
   void delete_me_when_the_logic_is_readdy(){
     print('This should be the reset password logic.....');
@@ -203,6 +207,7 @@ class _Reset_PsswrdState extends State<Reset_Psswrd> {
                   ),
                   Password(
                     controller: _newpasswordController, 
+                    enabled: !isAuthenticating,
                     hintText: 'P4ssw@rd',
                     validator: (v){
                           if(v!.isEmpty){
