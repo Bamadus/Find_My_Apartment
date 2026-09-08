@@ -21,7 +21,6 @@ class _LoginState extends State<Login> {
   final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
-  late final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
 
   String errormessage= '';
   final TextEditingController _usernameController = TextEditingController();
@@ -59,7 +58,6 @@ class _LoginState extends State<Login> {
                 _usernameController.text,
                 _passwordController.text,
               );
-
           if (!success) {
             // Show error if login fails
             ScaffoldMessenger.of(context).showSnackBar(
@@ -123,6 +121,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+  final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
+
     return Scaffold(
       backgroundColor:Color(0xffe3f2fd),
       body: Stack(

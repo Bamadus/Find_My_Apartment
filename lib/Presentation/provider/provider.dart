@@ -9,6 +9,7 @@ enum AuthStatus {
   authenticated, 
   authenticating,
   unauthenticated, 
+  login,
   error           
 }
 ValueNotifier<AuthProvider> authService= ValueNotifier(AuthProvider()); 
@@ -110,7 +111,10 @@ class AuthProvider with ChangeNotifier {
       await _auth.signInWithEmailAndPassword(
         email: email.trim(), 
         password: password.trim());
-        
+      
+      _user = _auth.currentUser;
+    _status = AuthStatus.login; 
+    notifyListeners();
       return true;
     } on FirebaseAuthException catch (e) {
       _status = AuthStatus.unauthenticated;

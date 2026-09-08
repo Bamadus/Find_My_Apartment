@@ -18,8 +18,10 @@ class Auth_layout extends StatelessWidget {
         return const Splash(); 
       case AuthStatus.newUser:
         return const Onboarding(); // Show onboarding if not finished
-      case AuthStatus.authenticated:
-        return const Login(); // Home page for apartments 
+      case AuthStatus.authenticated: // this state is for when sign Up is successful
+        return const Login();
+      case AuthStatus.login: // this state is for when login is successful
+        return const Home_Screen();
       case AuthStatus.authenticating:
         return Scaffold(body: Center(child: CircularProgressIndicator()));
       case AuthStatus.unauthenticated:
