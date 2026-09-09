@@ -3,6 +3,7 @@ import 'package:find_my_apartment/Presentation/onboarding/onboarding.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:find_my_apartment/Presentation/routes/home_screen.dart';
 import 'package:find_my_apartment/Presentation/routes/login.dart';
+import 'package:find_my_apartment/Presentation/routes/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +21,6 @@ class Auth_layout extends StatelessWidget {
         return const Onboarding(); // Show onboarding if not finished
       case AuthStatus.authenticated: // this state is for when sign Up is successful
         return const Login();
-      case AuthStatus.login: // this state is for when login is successful
-        return const Home_Screen();
       case AuthStatus.authenticating:
         return Scaffold(body: Center(child: CircularProgressIndicator()));
       case AuthStatus.unauthenticated:

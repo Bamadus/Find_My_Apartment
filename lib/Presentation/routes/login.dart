@@ -29,36 +29,15 @@ class _LoginState extends State<Login> {
   String? _pswrd_error;
   bool _isChecked = false;
 
-  void _validateInput() {
-    setState((){
-      _username_error= _usernameController.text.isEmpty?"This field is Required.":null;
-      _pswrd_error= _passwordController.text.isEmpty ? "This field is required." : null;
 
-      if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
-        _username_error;
-        _pswrd_error;
-      }else if(_usernameController.text.length < 2) {
-        _username_error = 'Invalid username';
-      }else if(_passwordController.text.length != 7){
-        _pswrd_error = 'Invalid password';
-      }
-      else {
-        _username_error = null;
-        _pswrd_error = null;
-      }
-    });
-  }
-
-  void user_login() async {
+  Future<void> user_login() async {
      var auth = context.read<AuthProvider>();
-    _validateInput();
-    if (_username_error == null && _pswrd_error == null) {
       try {
-          bool success = await context.read<AuthProvider>().login(
-                _usernameController.text,
-                _passwordController.text,
+          bool success = await auth.login(
+                _usernameController.text.trim(),
+                _passwordController.text.trim(),
               );
-          if (!success) {
+          if (!success && context.mounted) {
             // Show error if login fails
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -84,12 +63,34 @@ class _LoginState extends State<Login> {
                   ),
                 );
           }else{
-            // Navigator.pushAndRemoveUntil(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const Home_Screen()),
-            //   (route) => false,
-            // );
-            Scaffold(body:Text('Loading...'),);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 
+                Text(
+                  "Welcome!!",
+                  style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:18,
+                                    color: Color(0xffedf2fb),     
+                        )),
+                          backgroundColor: Color(0xff52b788),
+                          duration: Duration(seconds: 3),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(left: 15,
+                          right: 15, 
+                          bottom: 100
+                          ),
+                  ),
+                );
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const Home_Screen()),
+              (route) => false,
+            );
           }
       } on FirebaseAuthException catch (e) {
         if(mounted){
@@ -116,7 +117,7 @@ class _LoginState extends State<Login> {
         );
       }
       }
-    }
+    return null;
   }
 
   @override
