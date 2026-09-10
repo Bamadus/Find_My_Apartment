@@ -14,7 +14,7 @@ class Home_Screen extends StatefulWidget {
 class _Home_ScreenState extends State<Home_Screen> {
 
   int myIndex = 0;
-  List<Widget> widgetList = [
+  List<Widget> _pages = [
     Home(),
     Explore(),
     Favorite(),
@@ -24,43 +24,52 @@ class _Home_ScreenState extends State<Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: const Color(0xffedf2fb),
-            selectedItemColor: const Color(0xff002855),
-            unselectedItemColor:const Color(0xff5c677d),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'SourceSansPro',
-              fontSize: 15,
-              color:const Color(0xff002855),
-              fontWeight: FontWeight.w400,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              fontFamily: 'SourceSansPro',
-              fontSize: 15,
-              // color:const Color.fromARGB(255, 10, 10, 10),
-              fontWeight: FontWeight.w400,
-            ),
-            showSelectedLabels: false,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.shifting,
-            onTap: (index) {
-              setState(() {
-                myIndex = index;
-              });
-            },
-            currentIndex: myIndex,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),label: "Home",
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.explore_off_rounded), label: "Explore"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.heat_pump_rounded), label: "Favorite"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.message_outlined), label: "Messages"),
-            ]),
-      body: IndexedStack(index: myIndex,children: widgetList,)
+        bottomNavigationBar: 
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(35),
+            child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                elevation: 0,
+                onTap: (index) {
+                  setState(() {
+                    myIndex = index;
+                  });
+                },
+                iconSize: 25,
+                currentIndex: myIndex,
+                backgroundColor: const Color(0xff33415c),//Color(0xff001524),
+                selectedItemColor: const Color(0xfff8f9fa),
+                unselectedItemColor:const Color(0xffd7e3fc),
+                selectedLabelStyle: TextStyle(
+                  fontFamily: 'SourceSansPro',
+                  fontSize: 15,
+                  color:const Color(0xfff8f9fa),
+                  fontWeight: FontWeight.w400,
+                ),
+                unselectedLabelStyle: const TextStyle(
+                  fontFamily: 'SourceSansPro',
+                  fontSize: 15,
+                  color: Color(0xfff8f9fa),
+                  fontWeight: FontWeight.w400,
+                ),
+                showSelectedLabels: false,
+                showUnselectedLabels: true,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home,),label: "Home",
+                  ),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.explore), label: "Explore"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite), label: "Favorite"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.message), label: "Messages"),
+                ]),
+          ),
+        ),
+      body: IndexedStack(index: myIndex,children: _pages,)
     );
   }
 }
