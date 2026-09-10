@@ -227,6 +227,7 @@ class _Reset_PsswrdState extends State<Reset_Psswrd> {
                   ),
                     AppPassword(
                       controller: _confirmpasswordController,
+                      enabled: true,
                       hintText: 'P4ssw@rd',
                       maxlen: 8,
                       // onChanged: (value) => reset_password(),

@@ -172,102 +172,110 @@ class _LoginState extends State<Login> {
                   Icons.person_2_rounded)
                 ),
               SizedBox(height: 20,),
-                  Form(
-                    key: _loginKey,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        Text('Username',
-                                style: TextStyle(
-                                    fontFamily: 'SourceSansPro',
-                                    fontSize:16,
-                                    color: Color(0xff092C4C),
-                                    fontWeight: FontWeight.w400
-                        )),
-                        UserField(
-                        controller: _usernameController,
-                        enabled: !isAuthenticating,
-                        hintText: "user@name",
-                        validator: (v){
-                                  if(v!.isEmpty){
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
-                        ),
-                        SizedBox(height: 15,),
-                        Text('Password',
-                                style: TextStyle(
-                                    fontFamily: 'SourceSansPro',
-                                    fontSize:16,
-                                    color: Color(0xff092C4C),
-                                    fontWeight: FontWeight.w400
-                        )),
-                        AppPassword(
-                          controller: _passwordController,
-                          hintText: "P4ssword",
+                  Consumer<AuthProvider>(
+                    builder: (context, auth, child){
+                      return AbsorbPointer(
+                        absorbing: auth.status == AuthStatus.authenticating ? true : false,
+                        child: Form(
+                      key: _loginKey,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:[
+                          Text('Username',
+                                  style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:16,
+                                      color: Color(0xff092C4C),
+                                      fontWeight: FontWeight.w400
+                          )),
+                          UserField(
+                          controller: _usernameController,
+                          enabled: !isAuthenticating,
+                          hintText: "user@name",
                           validator: (v){
-                                  if(v!.isEmpty){
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
-                        ),
-                        Row(
-                                children: [
-                                  Checkbox(
-                                    shape:RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    activeColor:Color.fromARGB(255, 15, 43, 99) ,
-                                      value: _isChecked,
-                                      onChanged:(bool? value){
-                                        setState(() {
-                                          _isChecked = value ?? false;
-                                        });
-                                      },
-                                  ),
-                                  const Text('Remember My Detail',
-                                    style: TextStyle(
-                                        fontFamily: 'SourceSansPro',
-                                        fontSize:16,
-                                        color: Color(0xff626262),
-                                        fontWeight: FontWeight.w400
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
+                                    if(v!.isEmpty){
+                                      return "This field is required";
+                                    }
+                                    return null;
+                                  },
+                          ),
+                          SizedBox(height: 15,),
+                          Text('Password',
+                                  style: TextStyle(
+                                      fontFamily: 'SourceSansPro',
+                                      fontSize:16,
+                                      color: Color(0xff092C4C),
+                                      fontWeight: FontWeight.w400
+                          )),
+                          AppPassword(
+                            controller: _passwordController,
+                            enabled: true,
+                            hintText: "P4ssword",
+                            validator: (v){
+                                    if(v!.isEmpty){
+                                      return "This field is required";
+                                    }
+                                    return null;
+                                  },
+                          ),
+                          Row(
                                   children: [
-                                    const Text('Forgot Password?',
+                                    Checkbox(
+                                      shape:RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      activeColor:Color.fromARGB(255, 15, 43, 99) ,
+                                        value: _isChecked,
+                                        onChanged:(bool? value){
+                                          setState(() {
+                                            _isChecked = value ?? false;
+                                          });
+                                        },
+                                    ),
+                                    const Text('Remember My Detail',
                                       style: TextStyle(
-                                          fontSize:16,
                                           fontFamily: 'SourceSansPro',
+                                          fontSize:16,
                                           color: Color(0xff626262),
                                           fontWeight: FontWeight.w400
                                       ),
-                                    ),
-                                    TextButton(onPressed:(){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Reset_Psswrd()));
-                                    },
-                                        child:const Text('Reset Password',
-                                          style: TextStyle(
-                                            color: Color(0xff0085FF),
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                            fontFamily: 'SourceSansPro',
-                                            decoration: TextDecoration.underline,
-                                            decorationColor: Color(0xff0085FF),
-                                          ),
-                                        )
                                     )
                                   ],
                                 ),
-                      ],
-                    )
-                    )
+                                Row(
+                                    children: [
+                                      const Text('Forgot Password?',
+                                        style: TextStyle(
+                                            fontSize:16,
+                                            fontFamily: 'SourceSansPro',
+                                            color: Color(0xff626262),
+                                            fontWeight: FontWeight.w400
+                                        ),
+                                      ),
+                                      TextButton(onPressed:(){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const Reset_Psswrd()));
+                                      },
+                                          child:const Text('Reset Password',
+                                            style: TextStyle(
+                                              color: Color(0xff0085FF),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                              fontFamily: 'SourceSansPro',
+                                              decoration: TextDecoration.underline,
+                                              decorationColor: Color(0xff0085FF),
+                                            ),
+                                          )
+                                      )
+                                    ],
+                                  ),
+                        ],
+                      )
+                      ),
+                      );
+                    }
+                  )
                 ],
               )
             ),

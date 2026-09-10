@@ -83,7 +83,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                           ),
                   ),
                 );
-          Navigator.pop(context);
+          // Navigator.pop(context);
         }
     } on FirebaseAuthException catch (e) {
       if(mounted){

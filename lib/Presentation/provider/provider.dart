@@ -125,4 +125,8 @@ class AuthProvider with ChangeNotifier {
     _status = AuthStatus.unauthenticated;
     notifyListeners();
   }
+
+  // Future<bool> resetPassword() async{
+  //   // await _auth.confirmPasswordReset(code: code, newPassword: newPassword)
+  // }
 }
