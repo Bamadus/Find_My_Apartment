@@ -86,7 +86,6 @@ class login_onboarding extends StatelessWidget {
             ),
           ),
         ),
-       
             ],
           ),
           SizedBox(height: screenHeight(context)*0.1),

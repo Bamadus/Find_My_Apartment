@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Explore extends StatefulWidget{
+  const Explore({super.key});
+
   @override
   State<Explore> createState() => _ExploreState();
 }

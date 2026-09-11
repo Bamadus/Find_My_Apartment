@@ -1,5 +1,4 @@
 import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
-import 'package:find_my_apartment/Presentation/Abstract/onboarding/app_intro.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

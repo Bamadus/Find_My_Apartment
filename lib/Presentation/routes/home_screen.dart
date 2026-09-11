@@ -3,6 +3,7 @@ import 'package:find_my_apartment/Presentation/routes/main_app/favorite.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/home.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -14,7 +15,7 @@ class Home_Screen extends StatefulWidget {
 class _Home_ScreenState extends State<Home_Screen> {
 
   int myIndex = 0;
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     Home(),
     Explore(),
     Favorite(),
@@ -39,7 +40,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                 },
                 iconSize: 25,
                 currentIndex: myIndex,
-                backgroundColor: const Color(0xff33415c),//Color(0xff001524),
+                backgroundColor: const Color(0xff212529),//Color(0xff001524),
                 selectedItemColor: const Color(0xfff8f9fa),
                 unselectedItemColor:const Color(0xffd7e3fc),
                 selectedLabelStyle: TextStyle(
@@ -58,14 +59,18 @@ class _Home_ScreenState extends State<Home_Screen> {
                 showUnselectedLabels: true,
                 items: const [
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.home,),label: "Home",
+                    icon: Icon(UniconsLine.home_alt,),label: "Home",
+                    activeIcon: Icon(Icons.home),
                   ),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.explore), label: "Explore"),
+                      icon: Icon(UniconsLine.compass), label: "Explore",
+                      activeIcon: Icon(Icons.explore)),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite), label: "Favorite"),
+                      icon: Icon(UniconsLine.heart), label: "Favorite",
+                      activeIcon: Icon(Icons.favorite)),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.message), label: "Messages"),
+                      icon: Icon(UniconsLine.message), label: "Messages",
+                      activeIcon: Icon(Icons.message)),
                 ]),
           ),
         ),

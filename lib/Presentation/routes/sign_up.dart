@@ -208,7 +208,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                 onPressed: (){
                   if(_signupkey.currentState!.validate()){
                       user_signup();
-                    };
+                    }
                   },
               child: Consumer<AuthProvider>(
                 builder:(context, authProvider, child){

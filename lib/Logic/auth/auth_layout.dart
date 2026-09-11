@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 
 
 class Auth_layout extends StatelessWidget {
+  const Auth_layout({super.key});
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -68,7 +70,7 @@ class Auth_layout extends StatelessWidget {
                             bottom: 150
                             ),
           ),
-        );; // Show lognuin if not authenticated
+        ); {} // Show lognuin if not authenticated
       default:
         return const Login(); // Default to splash screen
     }
