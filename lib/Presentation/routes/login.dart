@@ -2,7 +2,7 @@ import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
 import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
-import 'package:find_my_apartment/Presentation/routes/home_screen.dart';
+import 'package:find_my_apartment/Presentation/routes/landing_screen.dart';
 import 'package:find_my_apartment/Presentation/routes/reset_psswrd.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                 );
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const Home_Screen()),
+              MaterialPageRoute(builder: (context) => const Landing_Screen()),
               (route) => false,
             );
           }

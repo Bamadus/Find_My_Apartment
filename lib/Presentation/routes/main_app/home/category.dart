@@ -113,7 +113,7 @@ class _CategoryButtonState extends State<CategoryButton> {
                   final isActive = item.id == activeId;
 
                   return Padding(
-                    padding: const EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.only(right: 10),
                     child:
                      ElevatedButton(
                       onPressed: () => setState(() => activeId = item.id),

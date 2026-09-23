@@ -5,14 +5,14 @@ import 'package:find_my_apartment/Presentation/routes/main_app/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
-class Home_Screen extends StatefulWidget {
-  const Home_Screen({super.key});
+class Landing_Screen extends StatefulWidget {
+  const Landing_Screen({super.key});
 
   @override
-  State<Home_Screen> createState() => _Home_ScreenState();
+  State<Landing_Screen> createState() => _Landing_ScreenState();
 }
 
-class _Home_ScreenState extends State<Home_Screen> {
+class _Landing_ScreenState extends State<Landing_Screen> {
 
   int myIndex = 0;
   final List<Widget> _pages = [
