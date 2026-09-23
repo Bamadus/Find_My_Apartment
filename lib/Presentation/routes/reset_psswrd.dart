@@ -166,7 +166,7 @@ class _Reset_PsswrdState extends State<Reset_Psswrd> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor:Color(0xffe3f2fd),
+      backgroundColor:Color(0xffF8F7F4),
       body: Container(
         child: ListView(
           // shrinkWrap: true,

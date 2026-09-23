@@ -1,6 +1,6 @@
 import 'package:find_my_apartment/Presentation/routes/main_app/explore.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/favorite.dart';
-import 'package:find_my_apartment/Presentation/routes/main_app/home.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/home/home.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';

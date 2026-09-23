@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
   final isAuthenticating = context.watch<AuthProvider>().status == AuthStatus.authenticating;
 
     return Scaffold(
-      backgroundColor:Color(0xffe3f2fd),
+      backgroundColor:Color(0xffF8F7F4),
       body: Stack(
         children: [
           Positioned(
