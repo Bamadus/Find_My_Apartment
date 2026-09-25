@@ -19,78 +19,9 @@ class CategoryButton extends StatefulWidget {
 class _CategoryButtonState extends State<CategoryButton> {
   final List<Category_Items> items = [
     Category_Items(id: '1', label: 'Houses', content: Cat_Model()),
-    Category_Items(id: '2', label: 'Apartments', content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 20, top: 20),
-                              child: Text("Apartment",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 20, top: 20),
-                              child: Text("\$0",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            )
-                          ],
-                        ),),
-    Category_Items(id: '3', label: 'Offices', content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 20, top: 20),
-                              child: Text("Offices",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 20, top: 20),
-                              child: Text("\$0",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            )
-                          ],
-                        ),),
-    Category_Items(id: '4', label: 'Town Houses', content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 20, top: 20),
-                              child: Text("Town Houses",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 20, top: 20),
-                              child: Text("\$0",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            )
-                          ],
-                        ),),
+    Category_Items(id: '2', label: 'Apartments', content: Cat_Model()),
+    Category_Items(id: '3', label: 'Offices', content: Cat_Model(),),
+    Category_Items(id: '4', label: 'Town Houses', content: Cat_Model()),
   ];
 
   // First item active by default

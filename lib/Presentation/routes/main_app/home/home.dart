@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Presentation/routes/main_app/home/card_model.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/home/category.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
@@ -12,45 +13,13 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
   final GlobalKey<FormState> _searchKey = GlobalKey<FormState>();
   final TextEditingController _searchController =TextEditingController();
-
-
-  Widget _catBotton(String value){
-    return InkWell(
-      onTap: () {
-        // Loading...
-      },
-      child: Container(
-                    // margin: EdgeInsets.only(right: 10),
-                    height: 40,
-                    width: 100,
-                    decoration: BoxDecoration(
-                              color: Color(0xff212529),
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                              BoxShadow(
-                              color: Color(0xff495057).withOpacity(0.5),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
-                             ),
-                         ],
-                        ),
-                    child: Center(
-                      child: Text(value, 
-                      style: TextStyle(
-                        color: Color(0xffFFFFFF),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      ),
-                    ),),
-    );
-  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF8F7F4),
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: const Color(0xffF8F7F4),
         leading: IconButton(
           icon: const Icon(Icons.menu),
@@ -84,8 +53,7 @@ class _HomeState extends State<Home> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left:20.0, top: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               'Discover\nyour new house!',
@@ -152,7 +120,16 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 30),
-            CategoryButton()
+            CategoryButton(),
+            Text(
+              'Property Nearby',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                ),
+            ),
+            SizedBox(height: 5,),
+            Property_card()
           ],
         ),
       ),

@@ -70,7 +70,7 @@ class Auth_layout extends StatelessWidget {
                             bottom: 150
                             ),
           ),
-        ); {} // Show lognuin if not authenticated
+        ); // Show lognuin if not authenticated
       default:
         return const Login(); // Default to splash screen
     }
