@@ -1,11 +1,8 @@
-import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
-import 'package:find_my_apartment/Presentation/routes/login.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
-import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {

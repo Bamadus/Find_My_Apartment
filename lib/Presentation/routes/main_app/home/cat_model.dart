@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import "package:unicons/unicons.dart";
 
 class Cat_Model extends StatefulWidget{
+  const Cat_Model({super.key});
+
   @override
   State<Cat_Model> createState() => _Cat_ModelState();
 }

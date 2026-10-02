@@ -1,5 +1,3 @@
-import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
-import 'package:find_my_apartment/Logic/auth/auth_service.dart';
 import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
 import 'package:find_my_apartment/Presentation/provider/provider.dart';
 import 'package:find_my_apartment/Presentation/routes/landing_screen.dart';
