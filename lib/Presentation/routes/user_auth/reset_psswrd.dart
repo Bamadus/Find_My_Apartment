@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:find_my_apartment/Presentation/Abstract/pwrdfield.dart';
-import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
-import 'package:find_my_apartment/Presentation/provider/provider.dart';
+import 'package:find_my_apartment/Presentation/widgets/textfield/pwrdfield.dart';
+import 'package:find_my_apartment/Presentation/widgets/textfield/textfield.dart';
+import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

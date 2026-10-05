@@ -1,5 +1,6 @@
-import 'package:find_my_apartment/Logic/auth/auth_layout.dart';
-import 'package:find_my_apartment/Presentation/provider/provider.dart';
+import 'package:find_my_apartment/Domain/auth/auth_layout.dart';
+import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
+import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,8 @@ await Firebase.initializeApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => LikeProvider()),
+
       ],
       child: const Home(),
     ),

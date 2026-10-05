@@ -1,8 +1,8 @@
 import "package:find_my_apartment/Presentation/onboarding/continue_onboarding.dart";
 import "package:find_my_apartment/Presentation/onboarding/login_onboardig.dart";
 import "package:find_my_apartment/Presentation/onboarding/next_onboarding.dart";
-import "package:find_my_apartment/Presentation/routes/login.dart";
-import "package:find_my_apartment/Presentation/routes/sign_up.dart";
+import "package:find_my_apartment/Presentation/routes/user_auth/login.dart";
+import "package:find_my_apartment/Presentation/routes/user_auth/sign_up.dart";
 import "package:flutter/material.dart";
 
 class Onboarding extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:find_my_apartment/Presentation/routes/main_app/home/cat_model.dart';
+import 'package:find_my_apartment/Presentation/widgets/home/cat_model.dart';
 import 'package:flutter/material.dart';
 
 class Category_Items {
@@ -35,8 +35,6 @@ class _CategoryButtonState extends State<CategoryButton> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-
-            // ---------- Row of ElevatedButtons ----------
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -73,7 +71,6 @@ class _CategoryButtonState extends State<CategoryButton> {
             ),
 
             SizedBox(height: 20,),
-            // ---------- Content that swaps ----------
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AnimatedSwitcher(

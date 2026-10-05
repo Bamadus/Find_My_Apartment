@@ -1,7 +1,7 @@
-import 'package:find_my_apartment/Presentation/Abstract/onboarding/app_intro.dart';
+import 'package:find_my_apartment/Presentation/widgets/onboarding/app_intro.dart';
 import 'package:find_my_apartment/Presentation/onboarding/onboarding.dart';
-import 'package:find_my_apartment/Presentation/provider/provider.dart';
-import 'package:find_my_apartment/Presentation/routes/login.dart';
+import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
+import 'package:find_my_apartment/Presentation/routes/user_auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

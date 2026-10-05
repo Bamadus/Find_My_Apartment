@@ -18,7 +18,7 @@ class _Landing_ScreenState extends State<Landing_Screen> {
   final List<Widget> _pages = [
     Home(),
     Explore(),
-    Favorite(),
+    // Favorite(),
     Messages()
   ];
 

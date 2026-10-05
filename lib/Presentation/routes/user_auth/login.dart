@@ -1,7 +1,7 @@
-import 'package:find_my_apartment/Presentation/Abstract/textfield.dart';
-import 'package:find_my_apartment/Presentation/provider/provider.dart';
-import 'package:find_my_apartment/Presentation/routes/landing_screen.dart';
-import 'package:find_my_apartment/Presentation/routes/reset_psswrd.dart';
+import 'package:find_my_apartment/Presentation/widgets/textfield/textfield.dart';
+import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
+import 'package:find_my_apartment/Presentation/widgets/bottomNavBar.dart';
+import 'package:find_my_apartment/Presentation/routes/user_auth/reset_psswrd.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

@@ -1,5 +1,5 @@
-import 'package:find_my_apartment/Presentation/routes/main_app/home/card_model.dart';
-import 'package:find_my_apartment/Presentation/routes/main_app/home/category.dart';
+import 'package:find_my_apartment/Presentation/widgets/home/card_model.dart';
+import 'package:find_my_apartment/Presentation/widgets/home/category.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
