@@ -18,10 +18,10 @@ class CategoryButton extends StatefulWidget {
 
 class _CategoryButtonState extends State<CategoryButton> {
   final List<Category_Items> items = [
-    Category_Items(id: '1', label: 'Houses', content: Cat_Model()),
-    Category_Items(id: '2', label: 'Apartments', content: Cat_Model()),
-    Category_Items(id: '3', label: 'Offices', content: Cat_Model(),),
-    Category_Items(id: '4', label: 'Town Houses', content: Cat_Model()),
+    Category_Items(id: '1', label: 'Houses', content: Text('Houses Content')), // Replace with your actual content widget, e.g., Cat_Model()
+    Category_Items(id: '2', label: 'Apartments', content: Text('Apartments Content')),
+    Category_Items(id: '3', label: 'Offices', content: Text('Offices Content')),
+    Category_Items(id: '4', label: 'Town Houses', content: Text('Town Houses Content')),
   ];
 
   // First item active by default
@@ -40,7 +40,7 @@ class _CategoryButtonState extends State<CategoryButton> {
               child: Row(
                 children: items.map((item) {
                   final isActive = item.id == activeId;
-
+    
                   return Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child:
@@ -69,12 +69,18 @@ class _CategoryButtonState extends State<CategoryButton> {
                 }).toList(),
               ),
             ),
-
+    
             SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 250),
+                layoutBuilder: (currentChild, previousChildren) {
+                  return Stack(
+                    alignment: Alignment.topLeft,
+                    children: [...previousChildren, ?currentChild],
+                  );
+                },
                 child: Column(
                   key: ValueKey(activeId),
                   crossAxisAlignment: CrossAxisAlignment.start,

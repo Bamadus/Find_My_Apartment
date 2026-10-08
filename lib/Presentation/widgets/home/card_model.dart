@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer_ai/shimmer_ai.dart';
 import "package:unicons/unicons.dart";
 
 class Property_card extends StatefulWidget{

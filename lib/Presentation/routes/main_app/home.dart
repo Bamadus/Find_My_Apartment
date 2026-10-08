@@ -13,6 +13,9 @@ class Home extends StatefulWidget{
 class _HomeState extends State<Home> {
   final GlobalKey<FormState> _searchKey = GlobalKey<FormState>();
   final TextEditingController _searchController =TextEditingController();
+
+  double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,8 @@ class _HomeState extends State<Home> {
       backgroundColor: const Color(0xffF8F7F4),
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: const Color(0xffF8F7F4),
+        toolbarHeight: screenHeight(context)* .1,
+        backgroundColor:const Color(0xffF8F7F4),
         leading: IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
@@ -51,9 +55,10 @@ class _HomeState extends State<Home> {
         )
         ]
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left:20.0, top: 15),
+      body: Container(
+        padding: const EdgeInsets.only(left:20, right: 10),
         child: ListView(
+          shrinkWrap: true,
           children: [
             Text(
               'Discover\nyour new house!',
@@ -120,7 +125,9 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 30),
-            CategoryButton(),
+            SizedBox(
+              height: 400,
+              child: CategoryButton()),
             Text(
               'Property Nearby',
               style: TextStyle(

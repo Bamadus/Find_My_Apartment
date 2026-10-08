@@ -73,7 +73,6 @@ flutter:
      - assets/lotties/Home_location.json
      - assets/lotties/Home2.json
      - assets/lotties/house_deal.json
-     - assets/Images/Home.png
      - assets/lotties/Authentication_Lock_Login.json
      - assets/lotties/Login1.json
      - assets/lotties/Login.json
