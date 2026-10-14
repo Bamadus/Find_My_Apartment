@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       backgroundColor: const Color(0xffF8F7F4),
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        toolbarHeight: screenHeight(context)* .1,
+        toolbarHeight: screenHeight(context)* .09,
         backgroundColor:const Color(0xffF8F7F4),
         leading: IconButton(
           icon: const Icon(Icons.menu),
@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
       body: Container(
         padding: const EdgeInsets.only(left:20, right: 10),
         child: ListView(
+          physics:const ClampingScrollPhysics(),
           shrinkWrap: true,
           children: [
             Text(
@@ -124,10 +125,8 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
-            SizedBox(
-              height: 400,
-              child: CategoryButton()),
+            SizedBox(height: 15),
+            CategoryButton(),
             Text(
               'Property Nearby',
               style: TextStyle(

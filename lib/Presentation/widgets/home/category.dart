@@ -1,4 +1,7 @@
+import 'package:find_my_apartment/Presentation/widgets/home/apart_cat_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/home/cat_model.dart';
+import 'package:find_my_apartment/Presentation/widgets/home/office_cat_model.dart';
+import 'package:find_my_apartment/Presentation/widgets/home/town_cat_model.dart';
 import 'package:flutter/material.dart';
 
 class Category_Items {
@@ -17,11 +20,12 @@ class CategoryButton extends StatefulWidget {
 }
 
 class _CategoryButtonState extends State<CategoryButton> {
-  final List<Category_Items> items = [
-    Category_Items(id: '1', label: 'Houses', content: Text('Houses Content')), // Replace with your actual content widget, e.g., Cat_Model()
-    Category_Items(id: '2', label: 'Apartments', content: Text('Apartments Content')),
-    Category_Items(id: '3', label: 'Offices', content: Text('Offices Content')),
-    Category_Items(id: '4', label: 'Town Houses', content: Text('Town Houses Content')),
+  
+  List<Category_Items> get items => [
+    Category_Items(id: '1', label: 'Houses',content: Cat_Model()), // Replace with your actual content widget, e.g., Cat_Model()
+    Category_Items(id: '2', label: 'Apartments', content: Apart_Cat_Model()), // Replace with your actual content widget, e.g., Apart_Cat_Model()
+    Category_Items(id: '3', label: 'Offices', content: Off_Cat_Model()), // Replace with your actual content widget, e.g., Cat_Model()
+    Category_Items(id: '4', label: 'Town Houses', content: Town_Cat_Model()), // Replace with your actual content widget, e.g., Town_Cat_Model()
   ];
 
   // First item active by default
@@ -71,32 +75,20 @@ class _CategoryButtonState extends State<CategoryButton> {
             ),
     
             SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 250),
-                layoutBuilder: (currentChild, previousChildren) {
-                  return Stack(
-                    alignment: Alignment.topLeft,
-                    children: [...previousChildren, ?currentChild],
-                  );
-                },
-                child: Column(
-                  key: ValueKey(activeId),
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      activeItem.label,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    activeItem.content
-                  ],
+            Column(
+              key: ValueKey(activeId),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  activeItem.label,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 8),
+                activeItem.content
+              ],
             ),
           ],
         );

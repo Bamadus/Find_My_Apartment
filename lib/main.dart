@@ -16,7 +16,6 @@ await Firebase.initializeApp(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => LikeProvider()),
-
       ],
       child: const Home(),
     ),
