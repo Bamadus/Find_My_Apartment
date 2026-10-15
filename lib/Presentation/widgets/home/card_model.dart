@@ -3,7 +3,6 @@ import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import 'package:flutter/material.dart';
-import "package:unicons/unicons.dart";
 
 class Property_card extends StatefulWidget{
   const Property_card({super.key});

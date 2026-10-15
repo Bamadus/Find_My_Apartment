@@ -22,16 +22,16 @@ class _Town_Cat_ModelState extends State<Town_Cat_Model> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 190,
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: demo_pic_list.length,
+      itemCount: _town_shuffle.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = _town_shuffle[index];
+            final pic = _town_shuffle.take(6).toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
-            height: 250,
+            height: 180,
             width: 250,
             decoration: BoxDecoration(
               border: Border.all(

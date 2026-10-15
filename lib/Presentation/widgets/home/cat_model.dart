@@ -1,4 +1,3 @@
-import 'package:find_my_apartment/Domain/model/picture_model.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/shuffle_pic.dart';
@@ -23,16 +22,16 @@ class _Cat_ModelState extends State<Cat_Model> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 190,
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: demo_pic_list.length,
+      itemCount: shuffled.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = shuffled[index];
+            final pic = shuffled.take(6).toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
-            height: 250,
+            height: 190,
             width: 250,
             decoration: BoxDecoration(
               border: Border.all(

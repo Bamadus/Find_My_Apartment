@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Presentation/routes/user_auth/sign_up.dart';
 import 'package:find_my_apartment/Presentation/widgets/textfield/textfield.dart';
 import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottomNavBar.dart';
@@ -72,10 +73,10 @@ class _LoginState extends State<Login> {
                                     color: Color(0xffedf2fb),     
                         )),
                           backgroundColor: Color(0xff52b788),
-                          duration: Duration(seconds: 3),
+                          duration: Duration(milliseconds: 650),
                           behavior: SnackBarBehavior.floating,
                           shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           padding: EdgeInsets.all(15),
                           margin: const EdgeInsets.only(left: 15,
@@ -330,7 +331,9 @@ class _LoginState extends State<Login> {
                                             fontWeight: FontWeight.w400
                                         ),
                                       ),
-                                      TextButton(onPressed:(){Navigator.pop(context);},
+                                      TextButton(onPressed:(){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignUp()));
+                                        },
                                           child:const Text('Sign Up',
                                             style: TextStyle(
                                               color: Color(0xff0085FF),

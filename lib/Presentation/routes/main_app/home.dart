@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:find_my_apartment/Presentation/widgets/drawer/drawer.dart';
 import 'package:find_my_apartment/Presentation/widgets/home/card_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/home/category.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +14,7 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
-  final GlobalKey<FormState> _searchKey = GlobalKey<FormState>();
-  final TextEditingController _searchController =TextEditingController();
-
+  bool _isDrawerOpen = false;
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   
@@ -21,16 +22,27 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF8F7F4),
+      drawer: CustomDrawer(),
+      drawerScrimColor: Colors.black.withValues(alpha: 0.15),
+      onDrawerChanged: (isOpened) {
+        setState(() {
+          _isDrawerOpen = isOpened;
+        });
+      },
       appBar: AppBar(
         scrolledUnderElevation: 0,
         toolbarHeight: screenHeight(context)* .09,
         backgroundColor:const Color(0xffF8F7F4),
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            // Handle menu button press
-          },
-        ),
+        leading: Builder(
+        builder: (context) {
+          return IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          );
+        },
+      ),
         actions: [
           IconButton(
           icon:  Icon(UniconsLine.bell, size: 30), // Use UniconsLine.notification for the notification icon
@@ -55,7 +67,34 @@ class _HomeState extends State<Home> {
         )
         ]
       ),
-      body: Container(
+      body: Stack(
+        children: [
+          _buildHomeRoute(),
+            if (_isDrawerOpen)
+            Positioned.fill(
+              child: IgnorePointer(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 6,
+                    sigmaY: 6,
+                  ),
+                  child: Container(
+                    color: Colors.white.withValues(alpha: 0.1),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      )
+    );
+  }
+}
+
+Widget _buildHomeRoute(){
+  final GlobalKey<FormState> _searchKey = GlobalKey<FormState>();
+  final TextEditingController _searchController =TextEditingController();
+
+  return Container(
         padding: const EdgeInsets.only(left:20, right: 10),
         child: ListView(
           physics:const ClampingScrollPhysics(),
@@ -127,6 +166,7 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 15),
             CategoryButton(),
+            SizedBox(height: 20,),
             Text(
               'Property Nearby',
               style: TextStyle(
@@ -138,7 +178,5 @@ class _HomeState extends State<Home> {
             Property_card()
           ],
         ),
-      ),
-    );
-  }
+      );
 }

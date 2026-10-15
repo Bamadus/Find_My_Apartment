@@ -21,8 +21,8 @@ class LikeProvider extends ChangeNotifier {
   // ─────────────────────────────────────────────────────────────
   // Initialization
   // ─────────────────────────────────────────────────────────────
-  void initializePictures(List<Picture> cat_pic) {
-    for (final pic in cat_pic) {
+  void initializePictures(List<Picture> catPic) {
+    for (final pic in catPic) {
       final k = _key(LikeType.cat_pictures, pic.id);
       _items[k] = pic;
       _likes.putIfAbsent(
@@ -36,8 +36,8 @@ class LikeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void initializeOtherPictures(List<Picture> other_pic) {
-    for (final other_pic in other_pic) {
+  void initializeOtherPictures(List<Picture> otherPic) {
+    for (final other_pic in otherPic) {
       final k = _key(LikeType.other_pictures, other_pic.id);
       _items[k] = other_pic;
       _likes.putIfAbsent(

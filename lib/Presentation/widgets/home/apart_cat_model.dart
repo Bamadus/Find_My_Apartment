@@ -17,21 +17,21 @@ class _Apart_Cat_ModelState extends State<Apart_Cat_Model> {
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   bool isSelected = false;
-  final _apart_shuffle = List<Picture>.from(demo_pic_list)..shuffle();
+   final _apart_shuffle = List<Picture>.from(demo_pic_list)..shuffle();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
+      height: 190,
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: demo_pic_list.length,
+      itemCount: _apart_shuffle.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = _apart_shuffle[index];
+            final pic = _apart_shuffle.take(6).toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
-            height: 250,
+            height: 190,
             width: 250,
             decoration: BoxDecoration(
               border: Border.all(

@@ -1,5 +1,3 @@
-import 'package:find_my_apartment/Data/pictures.dart';
-import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:flutter/material.dart';
 
 class Explore extends StatefulWidget{
