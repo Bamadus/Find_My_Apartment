@@ -107,8 +107,15 @@ class CustomDrawer extends StatelessWidget {
                 ),
 
                 ListTile(
-                  leading: const Icon(Icons.settings_outlined),
+                  leading: const Icon(Icons.settings_outlined, size: 30,),
                   title: const Text('Settings'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.account_balance_outlined, size: 30,),
+                  title: const Text('Account'),
                   onTap: () {
                     Navigator.pop(context);
                   },
