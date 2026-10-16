@@ -3,6 +3,7 @@ import 'package:find_my_apartment/Presentation/widgets/textfield/textfield.dart'
 import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
@@ -80,7 +81,7 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
                           ),
                   ),
                 );
-          // Navigator.pop(context);
+          Navigator.pop(context);
         }
     } on FirebaseAuthException catch (e) {
       if(mounted){
@@ -117,12 +118,12 @@ final GlobalKey<FormState> _signupkey = GlobalKey<FormState>();
       backgroundColor:Color(0xffF8F7F4),
       body: Stack(
         children: [
-          // Positioned(
-          //   child: Lottie.asset(
-          //     'assets/lotties/Authentication_Lock_Login.json',
+          Center(
+            child: Lottie.asset(
+              'assets/lotties/Authentication_Lock_Login.json',
               
-          //     ),
-          // ),
+              ),
+          ),
           ListView(
                 padding: EdgeInsets.all(15),
                 // shrinkWrap: true,

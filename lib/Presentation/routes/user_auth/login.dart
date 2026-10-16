@@ -182,7 +182,7 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
-                          Text('Username',
+                          Text('Email',
                                   style: TextStyle(
                                       fontFamily: 'SourceSansPro',
                                       fontSize:16,
@@ -192,7 +192,7 @@ class _LoginState extends State<Login> {
                           UserField(
                           controller: _usernameController,
                           enabled: !isAuthenticating,
-                          hintText: "user@name",
+                          hintText: "mail@gmail.com",
                           validator: (v){
                                     if(v!.isEmpty){
                                       return "This field is required";

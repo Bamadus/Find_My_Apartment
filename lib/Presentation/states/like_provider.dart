@@ -79,7 +79,7 @@ class LikeProvider extends ChangeNotifier {
   // ─────────────────────────────────────────────────────────────
   // Liked lists (for "Liked Pictures" / "Liked Videos" screens)
   // ─────────────────────────────────────────────────────────────
-  List<Picture> get likedPictures {
+  List<Picture> get liked_Cat_Pictures {
     return _likes.entries
         .where((e) =>
             e.value.isLiked && e.key.startsWith('${LikeType.cat_pictures.name}:'))
@@ -88,7 +88,7 @@ class LikeProvider extends ChangeNotifier {
         .toList();
   }
 
-  List<Picture> get likedVideos {
+  List<Picture> get liked_Other_Pictures {
     return _likes.entries
         .where((e) =>
             e.value.isLiked && e.key.startsWith('${LikeType.other_pictures.name}:'))
@@ -100,12 +100,12 @@ class LikeProvider extends ChangeNotifier {
   // ─────────────────────────────────────────────────────────────
   // Convenience counts
   // ─────────────────────────────────────────────────────────────
-  int get likedPictureCount => _likes.entries
+  int get liked_cat_picCount => _likes.entries
       .where((e) =>
           e.value.isLiked && e.key.startsWith('${LikeType.cat_pictures.name}:'))
       .length;
 
-  int get likedVideoCount => _likes.entries
+  int get liked_other_pic_Count => _likes.entries
       .where((e) =>
           e.value.isLiked && e.key.startsWith('${LikeType.other_pictures.name}:'))
       .length;

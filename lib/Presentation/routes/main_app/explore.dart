@@ -15,8 +15,24 @@ class _ExploreState extends State<Explore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: const Text('Find My Apartment-explore screen'),
+        scrolledUnderElevation: 0,
+        toolbarHeight: 80,
+        backgroundColor:Color.fromARGB(255, 238, 184, 24),
+        // title: const Text('Find My Apartment-explore screen'),
+        leading: Row(
+          
+          children: [
+            const CircleAvatar(
+                            radius: 60,
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.person,
+                              size: 40,
+                              color: Colors.black,
+                            ),
+                          ),
+          ],
+        ),
       ),
     );
   }

@@ -44,27 +44,15 @@ class _HomeState extends State<Home> {
         },
       ),
         actions: [
-          IconButton(
-          icon:  Icon(UniconsLine.bell, size: 30), // Use UniconsLine.notification for the notification icon
-          onPressed: () {
-            // Handle notification button press
-          },
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right:15.0),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xffe2eafc), // Set the background color to red
-            ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              icon:  Icon(UniconsLine.user), // Use UniconsLine.notification for the notification icon
-              onPressed: () {
-                // Handle user button press
-              },
-            ),
+            icon:  Icon(UniconsLine.bell, size: 30), // Use UniconsLine.notification for the notification icon
+            onPressed: () {
+              // Handle notification button press
+            },
+                    ),
           ),
-        )
         ]
       ),
       body: Stack(

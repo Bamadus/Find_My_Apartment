@@ -21,13 +21,14 @@ class CustomDrawer extends StatelessWidget {
       child: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 12,
-            sigmaY: 12,
+            sigmaX: 2,
+            sigmaY: 2,
           ),
           child: Container(
             color: const Color(0xffF8F7F4)
                 .withValues(alpha: 0.80),
             child: ListView(
+          physics:const ClampingScrollPhysics(),
               padding: EdgeInsets.zero,
               children: [
                 SizedBox(
@@ -107,18 +108,73 @@ class CustomDrawer extends StatelessWidget {
                 ),
 
                 ListTile(
+                  leading: const Icon(Icons.monetization_on_outlined, size: 30,),
+                  title: const Text('Payments'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
                   leading: const Icon(Icons.settings_outlined, size: 30,),
                   title: const Text('Settings'),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
+                SizedBox(height: 70,),
                 ListTile(
-                  leading: const Icon(Icons.account_balance_outlined, size: 30,),
-                  title: const Text('Account'),
-                  onTap: () {
-                    Navigator.pop(context);
+                  leading: Icon(Icons.logout_sharp, color: Color(0xffcb1b16),),
+                  title: const Text('Sign Out',style: TextStyle(color: Color(0xffcb1b16))),
+                  onTap: (){
+                    ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 
+                Text(
+                  "Sign Out Feature Loading...",
+                  style: TextStyle(
+                                    fontFamily: 'SourceSansPro',
+                                    fontSize:18,
+                                    color: Color(0xffedf2fb),     
+                        )),
+                          backgroundColor: Color(0xffb80c09),
+                          duration: Duration(milliseconds: 650),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(left: 15,
+                          right: 15, 
+                          bottom: 100
+                          ),
+                  ),
+                );
                   },
+                  ),
+                Container(
+                  margin: EdgeInsets.only(left: 120, right: 20),
+                  child: ElevatedButton(
+                        onPressed: (){},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xffeaebed),
+                          foregroundColor: Colors.black87,
+                          // elevation: 4,
+                          padding: const EdgeInsets.all(10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            side: BorderSide(
+                              color: Color(0xffd2cdc6),
+                              width: .5
+                            )
+                          ),
+                        ),
+                        child: Text("Rate Our App",
+                        style: TextStyle(
+                          fontSize: 13,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                        ),
+                      ),
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:find_my_apartment/Presentation/routes/main_app/explore.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/favorite.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/home.dart';
 import 'package:find_my_apartment/Presentation/routes/main_app/messages.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _Landing_ScreenState extends State<Landing_Screen> {
   final List<Widget> _pages = [
     Home(),
     Explore(),
-    // Favorite(),
+    Favorites(),
     Messages()
   ];
 
