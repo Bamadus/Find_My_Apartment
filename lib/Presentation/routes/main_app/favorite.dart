@@ -43,7 +43,7 @@ class Favorites extends StatelessWidget {
                 if (liked.isEmpty) {
                   return const Center(
                     child: Text(
-                      'No liked properties yet 💔',
+                      'No liked properties yet 💔.',
                       style: TextStyle(fontSize: 17),
                     ),
                   );

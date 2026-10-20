@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Explore extends StatefulWidget{
@@ -11,26 +12,53 @@ class _ExploreState extends State<Explore> {
 
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  final User? user = FirebaseAuth.instance.currentUser;
+  
+
   @override
   Widget build(BuildContext context) {
+    final String username = user?.displayName ?? 'USER';
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
         toolbarHeight: 80,
-        backgroundColor:Color.fromARGB(255, 238, 184, 24),
+        leadingWidth: 250,
         // title: const Text('Find My Apartment-explore screen'),
         leading: Row(
-          
           children: [
             const CircleAvatar(
-                            radius: 60,
-                            backgroundColor: Colors.white,
+                            radius: 50,
+                            backgroundColor: Color(0xffcce3de),
                             child: Icon(
                               Icons.person,
                               size: 40,
                               color: Colors.black,
                             ),
                           ),
+                          RichText(
+                            text: TextSpan(
+                             children: [
+                                   TextSpan(
+                                   text: 'Hi, ${username}',
+                                    style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xff212529),
+                            ),
+                          ),
+                                  TextSpan(
+                                    text: '\nWelcome Back',
+                                    style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w300,
+                                    color: Color(0xff343a40),
+                                  ),
+                                  ),
+                               ],
+                              ),
+                              )
+
+
           ],
         ),
       ),
