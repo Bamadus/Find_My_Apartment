@@ -79,8 +79,8 @@ class _HomeState extends State<Home> {
 }
 
 Widget _buildHomeRoute(){
-  final GlobalKey<FormState> _searchKey = GlobalKey<FormState>();
-  final TextEditingController _searchController =TextEditingController();
+  final GlobalKey<FormState> searchKey = GlobalKey<FormState>();
+  final TextEditingController searchController =TextEditingController();
 
   return Container(
         padding: const EdgeInsets.only(left:20, right: 10),
@@ -101,7 +101,7 @@ Widget _buildHomeRoute(){
                 Expanded(
                   child: Form(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    key: _searchKey,
+                    key: searchKey,
                     child: Container(
                            decoration: BoxDecoration(
                             color: Color.fromARGB(255, 247, 248, 248),
@@ -115,7 +115,7 @@ Widget _buildHomeRoute(){
                        ],
                       ),
                       child: TextFormField(
-                        controller: _searchController,
+                        controller: searchController,
                         autocorrect: true,
                         decoration: InputDecoration(
                           hintText: 'Search Places',

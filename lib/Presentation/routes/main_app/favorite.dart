@@ -1,4 +1,4 @@
-// screens/liked_screen.dart
+import 'package:find_my_apartment/Domain/model/picture_model.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
@@ -13,39 +13,90 @@ class Favorites extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF8F7F4),
+
       appBar: AppBar(
-        backgroundColor:const Color(0xffF8F7F4),
-        title: const Text('Liked Pictures')
-        ),
+        backgroundColor: const Color(0xffF8F7F4),
+        title: const Text('My Favorites'),
+      ),
+
       body: Column(
         children: [
-          Lottie.asset(
+          SizedBox(
+            height: 180,
+            child: Lottie.asset(
               'assets/lotties/Home2.json',
-              ),
-              Divider(
-                thickness: .5,
-                indent: 20,
-                endIndent: 20,
-              ),
-              SizedBox(height: 10,),
-          Consumer<LikeProvider>(
-            builder: (context, provider, _) {
-              final liked = provider.liked_Cat_Pictures;
-              if (liked.isEmpty) {
-                return const Center(child: Text('No liked pictures yet 💔'));
-              }
-              return ListView.builder(
-                itemCount: liked.length,
-                itemBuilder: (context, i) {
-                  final pic = liked[i];
-                  return ListTile(
-                    leading: Image.asset(pic.path, width: 56, height: 56, fit: BoxFit.cover),
-                    title: Text(pic.title),
-                    trailing: LikeButton(type: LikeType.cat_pictures, id: pic.id, style: LikeButtonStyle.cat_picture), // unlike from here
+            ),
+          ),
+
+          const Divider(
+            thickness: 0.5,
+            indent: 20,
+            endIndent: 20,
+          ),
+
+          const SizedBox(height: 10),
+
+          Expanded(
+            child: Consumer<LikeProvider>(
+              builder: (context, provider, _) {
+                final liked = provider.liked_Cat_Pictures;
+                if (liked.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No liked properties yet 💔',
+                      style: TextStyle(fontSize: 17),
+                    ),
                   );
-                },
-              );
-            },
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.all(12),
+                  itemCount: liked.length,
+
+                  itemBuilder: (context, index) {
+                    final Picture pic = liked[index];
+
+                    return Card(
+                      margin: const EdgeInsets.only(bottom: 12),
+
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            pic.path,
+                            width: 65,
+                            height: 65,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+
+                        title: Text(
+                          pic.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        subtitle: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(pic.location),
+                            Text(pic.price),
+                          ],
+                        ),
+
+                        trailing: LikeButton(
+                          type: LikeType.cat_pictures,
+                          id: pic.id,
+                          style: LikeButtonStyle.cat_picture,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),

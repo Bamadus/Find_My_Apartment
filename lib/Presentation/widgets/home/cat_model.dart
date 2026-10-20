@@ -3,7 +3,6 @@ import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model
 import 'package:find_my_apartment/Presentation/widgets/shuffle_pic.dart';
 import "package:flutter/material.dart";
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
-import 'package:find_my_apartment/Data/pictures.dart';  
 
 class Cat_Model extends StatefulWidget{
   const Cat_Model({super.key});
@@ -87,7 +86,7 @@ class _Cat_ModelState extends State<Cat_Model> {
                 right: 10,
                 bottom: 0,
                 // margin: EdgeInsets.only(left: 20),
-                child: LikeButton(type: LikeType.other_pictures, id: pic.id, style: LikeButtonStyle.cat_picture), // like button
+                child: LikeButton(type: LikeType.cat_pictures, id: pic.id, style: LikeButtonStyle.cat_picture), // like button
               )
                 ],
               ),

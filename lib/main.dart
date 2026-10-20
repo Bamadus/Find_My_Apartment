@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Data/pictures.dart';
 import 'package:find_my_apartment/Domain/auth/auth_layout.dart';
 import 'package:find_my_apartment/Presentation/states/auth_provider.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
@@ -8,18 +9,25 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => LikeProvider()),
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LikeProvider()
+            ..initializePictures(demo_pic_list),
+        ),
       ],
       child: const Home(),
     ),
-    );
+  );
 }
 
 class Home extends StatefulWidget {

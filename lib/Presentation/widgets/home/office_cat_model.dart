@@ -87,7 +87,7 @@ class _Off_Cat_ModelState extends State<Off_Cat_Model> {
                 right: 10,
                 bottom: 0,
                 // margin: EdgeInsets.only(left: 20),
-                child: LikeButton(type: LikeType.other_pictures, id: pic.id, style: LikeButtonStyle.cat_picture), // like button
+                child: LikeButton(type: LikeType.cat_pictures, id: pic.id, style: LikeButtonStyle.cat_picture), // like button
               )
                 ],
               ),

@@ -79,23 +79,48 @@ class LikeProvider extends ChangeNotifier {
   // ─────────────────────────────────────────────────────────────
   // Liked lists (for "Liked Pictures" / "Liked Videos" screens)
   // ─────────────────────────────────────────────────────────────
-  List<Picture> get liked_Cat_Pictures {
-    return _likes.entries
-        .where((e) =>
-            e.value.isLiked && e.key.startsWith('${LikeType.cat_pictures.name}:'))
-        .map((e) => _items[e.key])
-        .whereType<Picture>()
-        .toList();
+
+//   List<Picture> get allLikedPictures {
+//   return _likes.entries
+//       .where((entry) => entry.value.isLiked)
+//       .map((entry) => _items[entry.key])
+//       .whereType<Picture>()
+//       .toList();
+// }
+
+List<Picture> get liked_Cat_Pictures {
+  final Map<String, Picture> uniquePictures = {};
+
+  for (final entry in _likes.entries) {
+    if (!entry.value.isLiked) continue;
+    
+    if (!entry.key.startsWith(
+      '${LikeType.cat_pictures.name}:',
+    )) {
+      continue;
+    }
+
+    final picture = _items[entry.key];
+
+    if (picture is Picture) {
+      uniquePictures.putIfAbsent(
+        picture.id,
+        () => picture,
+      );
+    }
   }
 
-  List<Picture> get liked_Other_Pictures {
-    return _likes.entries
-        .where((e) =>
-            e.value.isLiked && e.key.startsWith('${LikeType.other_pictures.name}:'))
-        .map((e) => _items[e.key])
-        .whereType<Picture>()
-        .toList();
-  }
+  return uniquePictures.values.toList();
+}
+
+  // List<Picture> get liked_Other_Pictures {
+  //   return _likes.entries
+  //       .where((e) =>
+  //           e.value.isLiked && e.key.startsWith('${LikeType.other_pictures.name}:'))
+  //       .map((e) => _items[e.key])
+  //       .whereType<Picture>()
+  //       .toList();
+  // }
 
   // ─────────────────────────────────────────────────────────────
   // Convenience counts
