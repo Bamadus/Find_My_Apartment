@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
 
 class Explore extends StatefulWidget{
   const Explore({super.key});
@@ -61,6 +62,17 @@ class _ExploreState extends State<Explore> {
 
           ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+            icon:  Icon(UniconsLine.bell, size: 30), // Use UniconsLine.notification for the notification icon
+            onPressed: () {
+              // Handle notification button press
+            },
+                    ),
+          ),
+        ]
       ),
     );
   }
