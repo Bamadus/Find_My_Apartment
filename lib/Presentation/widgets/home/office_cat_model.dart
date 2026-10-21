@@ -17,7 +17,9 @@ class _Off_Cat_ModelState extends State<Off_Cat_Model> {
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   bool isSelected = false;
-  final _office_shuffle = List<Picture>.from(demo_pic_list)..shuffle();
+  final content = demo_pic_list.where(
+  (pic) => pic.title.toLowerCase() == 'office',
+).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,9 @@ class _Off_Cat_ModelState extends State<Off_Cat_Model> {
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: _office_shuffle.take(6).toList().length,
+      itemCount: content.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = _office_shuffle.take(6).toList()[index];
+            final pic = content.toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
             height: 190,

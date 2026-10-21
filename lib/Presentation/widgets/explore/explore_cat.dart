@@ -69,21 +69,6 @@ Widget build(BuildContext context) {
                 ),
               ),
             ),
-
-            // Property location
-            Positioned(
-              bottom: 15,
-              left: 10,
-              child: Text(
-                pic.location,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-
             // Floating LikeButton
             Positioned(
               top: 0,

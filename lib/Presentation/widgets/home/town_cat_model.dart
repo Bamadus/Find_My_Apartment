@@ -5,19 +5,21 @@ import "package:flutter/material.dart";
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:find_my_apartment/Data/pictures.dart';  
 
-class Town_Cat_Model extends StatefulWidget{
-  const Town_Cat_Model({super.key});
+class Condo_Cat_Model extends StatefulWidget{
+  const Condo_Cat_Model({super.key});
 
   @override
-  State<Town_Cat_Model> createState() => _Town_Cat_ModelState();
+  State<Condo_Cat_Model> createState() => _Condo_Cat_ModelState();
 }
 
-class _Town_Cat_ModelState extends State<Town_Cat_Model> {
+class _Condo_Cat_ModelState extends State<Condo_Cat_Model> {
 
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   bool isSelected = false;
-  final _town_shuffle = List<Picture>.from(demo_pic_list)..shuffle();
+  final content = demo_pic_list.where(
+  (pic) => pic.title.toLowerCase() == 'condo',
+).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,9 @@ class _Town_Cat_ModelState extends State<Town_Cat_Model> {
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: _town_shuffle.take(6).toList().length,
+      itemCount: content.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = _town_shuffle.take(6).toList()[index];
+            final pic = content.toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
             height: 180,

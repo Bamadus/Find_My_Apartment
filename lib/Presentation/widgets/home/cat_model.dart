@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Data/pictures.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/shuffle_pic.dart';
@@ -16,7 +17,9 @@ class _Cat_ModelState extends State<Cat_Model> {
   double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   bool isSelected = false;
-
+  final houses = demo_pic_list.where(
+  (pic) => pic.title.toLowerCase() == 'houses',
+).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,9 @@ class _Cat_ModelState extends State<Cat_Model> {
       // width: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-      itemCount: shuffled.take(6).toList().length,
+      itemCount: houses.take(6).toList().length,
       itemBuilder: (context, index) {
-            final pic = shuffled.take(6).toList()[index];
+            final pic = houses.toList()[index];
             return Container(
         margin: EdgeInsets.only(right:20),
             height: 190,

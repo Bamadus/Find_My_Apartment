@@ -25,7 +25,7 @@ class _CategoryButtonState extends State<CategoryButton> {
     Category_Items(id: '1', label:"Houses",content: Cat_Model()), // Replace with your actual content widget, e.g., Cat_Model()
     Category_Items(id: '2', label:"Apartments", content: Apart_Cat_Model()), // Replace with your actual content widget, e.g., Apart_Cat_Model()
     Category_Items(id: '3', label:"Offices", content: Off_Cat_Model()), // Replace with your actual content widget, e.g., Cat_Model()
-    Category_Items(id: '4', label:"Towns", content: Town_Cat_Model()), // Replace with your actual content widget, e.g., Town_Cat_Model()
+    Category_Items(id: '4', label:"Condos", content: Condo_Cat_Model()), // Replace with your actual content widget, e.g., Town_Cat_Model()
   ];
 
   // First item active by default

@@ -105,7 +105,20 @@ class _ExploreState extends State<Explore> {
                 indent: 5
               ),
               SizedBox(height: 10,),
-              Expanded(child: Explore_img())
+              Expanded(
+                child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(45),
+                topRight: Radius.circular(25),
+                bottomLeft: Radius.circular(45),
+                bottomRight: Radius.circular(45),
+              ),
+              child: Container(
+              color: const Color(0xffF8F7F4),
+              child: const Explore_img(),
+              ),
+              ),
+              )
           ],
         ),
       ),
