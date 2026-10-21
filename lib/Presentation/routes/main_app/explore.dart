@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Presentation/widgets/explore/explore_cat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
@@ -20,7 +21,9 @@ class _ExploreState extends State<Explore> {
   Widget build(BuildContext context) {
     final String username = user?.displayName ?? 'USER';
     return Scaffold(
+        backgroundColor:const Color(0xffF8F7F4),
       appBar: AppBar(
+        backgroundColor:const Color(0xffF8F7F4),
         scrolledUnderElevation: 0,
         toolbarHeight: 80,
         leadingWidth: 250,
@@ -63,16 +66,48 @@ class _ExploreState extends State<Explore> {
           ],
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Container(
+            margin: EdgeInsets.all(8),
+            padding: EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: AlignmentGeometry.bottomCenter,
+                colors:[ Color(0xff212529), Color(0xff495057)]
+                )
+            ),
             child: IconButton(
-            icon:  Icon(UniconsLine.bell, size: 30), // Use UniconsLine.notification for the notification icon
+            icon:  Icon(UniconsLine.search, size: 30, color: Color(0xfff6fff8),), // Use UniconsLine.notification for the notification icon
             onPressed: () {
               // Handle notification button press
             },
-                    ),
+            ),
           ),
         ]
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+                'Locate The Perfect\nPlace For You!!',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  ),
+              ),
+              Divider(
+                indent: 5
+              ),
+              SizedBox(height: 10,),
+              Expanded(child: Explore_img())
+          ],
+        ),
       ),
     );
   }

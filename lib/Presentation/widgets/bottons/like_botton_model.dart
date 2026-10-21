@@ -13,7 +13,7 @@ class LikeButtonStyle {
     required this.unlikedIcon,
     required this.likedColor,
     required this.unlikedColor,
-    this.iconSize = 24,
+    required this.iconSize,
     this.decoration,
   });
 
@@ -23,6 +23,7 @@ class LikeButtonStyle {
     unlikedIcon: Icons.favorite_border,
     likedColor: Color(0xffa4161a),
     unlikedColor: Colors.white,
+    iconSize: 28
   );
 
   static const other_picture = LikeButtonStyle(
@@ -30,5 +31,6 @@ class LikeButtonStyle {
     unlikedIcon: Icons.favorite_border,
     likedColor: Color(0xffa4161a),
     unlikedColor: Color(0xffadb5bd),
+    iconSize: 28
     );
 }
