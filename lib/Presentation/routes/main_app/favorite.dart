@@ -12,7 +12,8 @@ class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF8F7F4),
+            backgroundColor: const Color(0xffF8F7F4),
+
 
       appBar: AppBar(
         backgroundColor: const Color(0xffF8F7F4),
