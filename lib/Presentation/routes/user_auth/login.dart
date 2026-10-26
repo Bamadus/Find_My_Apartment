@@ -62,29 +62,6 @@ class _LoginState extends State<Login> {
                   ),
                 );
           }else{
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: 
-                Text(
-                  "Welcome!!",
-                  style: TextStyle(
-                                    fontFamily: 'SourceSansPro',
-                                    fontSize:18,
-                                    color: Color(0xffedf2fb),     
-                        )),
-                          backgroundColor: Color(0xff52b788),
-                          duration: Duration(milliseconds: 650),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.all(15),
-                          margin: const EdgeInsets.only(left: 15,
-                          right: 15, 
-                          bottom: 100
-                          ),
-                  ),
-                );
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const Landing_Screen()),

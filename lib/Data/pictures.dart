@@ -52,7 +52,7 @@ final demo_pic_list = [
   Picture(
     id: '7',
     path: 'assets/Images/home2.jpeg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$2500/month',
     location: 'lagos Island.',
@@ -60,7 +60,7 @@ final demo_pic_list = [
   Picture(
     id: '8',
     path: 'assets/Images/home3.jpeg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$1500/month',
     location: 'VI, Lagos.',
@@ -68,7 +68,7 @@ final demo_pic_list = [
   Picture(
     id: '9',
     path: 'assets/Images/home4.jpeg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$800/month',
     location: 'Ikeja, Lagos.',
@@ -76,7 +76,7 @@ final demo_pic_list = [
   Picture(
     id: '10',
     path: 'assets/Images/home5.jpg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$5000/month',
     location: 'Lagos Island.',
@@ -84,7 +84,7 @@ final demo_pic_list = [
   Picture(
     id: '11',
     path: 'assets/Images/home6.jpg',
-    title: 'houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$4000/month',
     location: 'Lagos Island.',
@@ -92,7 +92,7 @@ final demo_pic_list = [
   Picture(
     id: '12',
     path: 'assets/Images/home7.jpg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$3500/month',
     location: 'VI, Lagos.',
@@ -116,7 +116,7 @@ final demo_pic_list = [
   Picture(
     id: '15',
     path: 'assets/Images/home10.jpg',
-    title: 'Houses',
+    title: 'House',
     initialLikes: 3,
     price: '\$1000/month',
     location: 'Ikeja, Lagos.',

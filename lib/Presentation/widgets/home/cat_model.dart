@@ -1,4 +1,5 @@
 import 'package:find_my_apartment/Data/pictures.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/property_detail.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/shuffle_pic.dart';
@@ -18,7 +19,7 @@ class _Cat_ModelState extends State<Cat_Model> {
   double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
   bool isSelected = false;
   final houses = demo_pic_list.where(
-  (pic) => pic.title.toLowerCase() == 'houses',
+  (pic) => pic.title.toLowerCase() == 'house',
 ).toList();
 
   @override
@@ -45,7 +46,27 @@ class _Cat_ModelState extends State<Cat_Model> {
               borderRadius: BorderRadius.circular(30),
               child: Stack(
                 children: [
-                  Positioned.fill(child: Image.asset(pic.path, fit: BoxFit.cover)),
+                  Positioned.fill(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => PropertyDetail(
+                          image_path: pic.path,
+                          prop_id: pic.id,
+                          title: pic.title,
+                          location: pic.location,
+                         ),
+                       ),
+                       );
+                       },
+                      child: Hero(
+                        tag: 'property_${pic.id}',
+                        child: Image.asset(
+                          pic.path, fit: BoxFit.cover),
+                      ),
+                    )),
                     Positioned(
                       top: 10,
                       // left: 20,
