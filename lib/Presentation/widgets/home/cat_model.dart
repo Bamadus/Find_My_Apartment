@@ -57,6 +57,7 @@ class _Cat_ModelState extends State<Cat_Model> {
                           prop_id: pic.id,
                           title: pic.title,
                           location: pic.location,
+                          price: pic.price,
                          ),
                        ),
                        );
