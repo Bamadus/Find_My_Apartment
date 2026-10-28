@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:find_my_apartment/Data/pictures.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/property_detail.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/circle_notch.dart';
-import 'package:find_my_apartment/Presentation/widgets/shuffle_pic.dart';
 import "package:flutter/material.dart";
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:unicons/unicons.dart';
@@ -44,9 +44,25 @@ Widget build(BuildContext context) {
             Positioned.fill(
               child: ClipPath(
                 clipper: CircleNotchClipper(),
-                child: Image.asset(
-                  pic.path,
-                  fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => PropertyDetail(
+                          image_path: pic.path,
+                          prop_id: pic.id,
+                          title: pic.title,
+                          location: pic.location,
+                          price: pic.price,
+                         ),
+                       ),
+                       );
+                       },
+                  child: Image.asset(
+                    pic.path,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

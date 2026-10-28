@@ -1,4 +1,5 @@
 import 'package:find_my_apartment/Data/pictures.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/property_detail.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
@@ -53,7 +54,25 @@ class _Property_cardState extends State<Property_card> {
           bottomLeft: Radius.circular(6),
           bottomRight: Radius.circular(6)
                   )),   
-                  child: Image.asset(pic.path, fit: BoxFit.fill,),
+                  child: GestureDetector(
+                    onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => PropertyDetail(
+                          image_path: pic.path,
+                          prop_id: pic.id,
+                          title: pic.title,
+                          location: pic.location,
+                          price: pic.price,
+                         ),
+                       ),
+                       );
+                       },
+                    child: Hero(
+                            tag: 'property_${pic.id}',
+                      child: Image.asset(pic.path, fit: BoxFit.fill,)),
+                  ),
                   //  
             ),
             Text("${pic.location}\n${pic.price}",

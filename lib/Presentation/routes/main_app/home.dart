@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:find_my_apartment/Presentation/routes/main_app/search.dart';
 import 'package:find_my_apartment/Presentation/widgets/drawer/drawer.dart';
 import 'package:find_my_apartment/Presentation/widgets/home/card_model.dart';
 import 'package:find_my_apartment/Presentation/widgets/home/category.dart';
@@ -80,6 +81,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
 
 class Content extends StatefulWidget{
+  const Content({super.key});
+
 
   @override
   State<Content> createState() => _ContentState();
@@ -180,15 +183,30 @@ Widget animateWidget({
                              ),
                          ],
                         ),
-                        child: TextFormField(
-                          controller: searchController,
-                          autocorrect: true,
-                          decoration: InputDecoration(
-                            hintText: 'Search Places',
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
+                        child: Hero(
+                          tag: 'searchBar',
+                          child: Material(
+                            color: Colors.transparent,
+                            child: TextFormField(
+                              controller: searchController,
+                              readOnly: true,
+                              autocorrect: true,
+                              decoration: InputDecoration(
+                                hintText: 'Search Places',
+                                prefixIcon: Icon(Icons.search),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                builder: (context) => const SearchScreen(),
+                                ),
+                                );
+                             },
                             ),
                           ),
                         ),

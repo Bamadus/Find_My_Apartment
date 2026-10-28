@@ -201,7 +201,6 @@ Widget animateWidget({
                           Text(' 3')
                         ],
                       )
-
                     ],
                   ),
                 ),

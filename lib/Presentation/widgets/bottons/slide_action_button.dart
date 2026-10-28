@@ -73,7 +73,15 @@ class _SlideActionButtonState extends State<SlideActionButton> {
                 width: _padding + position + _thumbSize,
                 height: _height,
                 decoration: BoxDecoration(
-                  color: const Color(0xff065a60),
+                  // color: const Color(0xff343a40).withOpacity(.3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xff001233),
+                      Color(0xff023e7d),
+                    ],
+                  ),
                   borderRadius: BorderRadius.circular(40),
                 ),
               ),

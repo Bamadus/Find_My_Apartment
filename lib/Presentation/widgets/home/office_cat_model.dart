@@ -1,4 +1,4 @@
-import 'package:find_my_apartment/Domain/model/picture_model.dart';
+import 'package:find_my_apartment/Presentation/routes/main_app/property_detail.dart';
 import 'package:find_my_apartment/Presentation/states/like_provider.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/like_botton_model.dart';
 import "package:flutter/material.dart";
@@ -45,7 +45,26 @@ class _Off_Cat_ModelState extends State<Off_Cat_Model> {
               borderRadius: BorderRadius.circular(30),
               child: Stack(
                 children: [
-                  Positioned.fill(child: Image.asset(pic.path, fit: BoxFit.cover)),
+                  Positioned.fill(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => PropertyDetail(
+                          image_path: pic.path,
+                          prop_id: pic.id,
+                          title: pic.title,
+                          location: pic.location,
+                          price: pic.price,
+                         ),
+                       ),
+                       );
+                       },
+                      child: Hero(
+                          tag: 'property_${pic.id}',
+                        child: Image.asset(pic.path, fit: BoxFit.cover)),
+                    )),
                     Positioned(
                       top: 10,
                       // left: 20,

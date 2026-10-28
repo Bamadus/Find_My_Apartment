@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Presentation/routes/main_app/search.dart';
 import 'package:find_my_apartment/Presentation/widgets/explore/explore_cat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class _ExploreState extends State<Explore> {
                             text: TextSpan(
                              children: [
                                    TextSpan(
-                                   text: 'Hi, ${username}',
+                                   text: 'Hi, $username',
                                     style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w400,
@@ -65,27 +66,6 @@ class _ExploreState extends State<Explore> {
 
           ],
         ),
-        actions: [
-          Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: AlignmentGeometry.bottomCenter,
-                colors:[ Color(0xff212529), Color(0xff495057)]
-                )
-            ),
-            child: IconButton(
-            icon:  Icon(UniconsLine.search, size: 30, color: Color(0xfff6fff8),), // Use UniconsLine.notification for the notification icon
-            onPressed: () {
-              // Handle notification button press
-            },
-            ),
-          ),
-        ]
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
