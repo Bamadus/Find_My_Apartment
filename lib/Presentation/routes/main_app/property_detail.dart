@@ -1,3 +1,4 @@
+import 'package:find_my_apartment/Presentation/routes/main_app/book.dart';
 import 'package:find_my_apartment/Presentation/widgets/bottons/slide_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
@@ -212,13 +213,13 @@ Widget animateWidget({
                   child: SlideActionButton(
                     text: "Book Now",
                     onComplete: () {
-                      Navigator.pop(context);
-                    //    Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //     builder: (context) => const N(),
-                    //   ),
-                    // );
+                      // Navigator.pop(context);
+                       Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => const Book_Inspect(),
+                      ),
+                    );
                     },
                   ),
                 )

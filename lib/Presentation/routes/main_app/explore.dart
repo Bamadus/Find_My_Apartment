@@ -1,8 +1,6 @@
-import 'package:find_my_apartment/Presentation/routes/main_app/search.dart';
 import 'package:find_my_apartment/Presentation/widgets/explore/explore_cat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:unicons/unicons.dart';
 
 class Explore extends StatefulWidget{
   const Explore({super.key});
